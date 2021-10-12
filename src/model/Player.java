@@ -14,6 +14,16 @@ public class Player {
         this.actualTeam = actualTeam;
         this.birthday = birthday;
     }
+    public Player(String name, String actualTeam, LocalDate birthday, double pointsPerGame, double reboundsPerGame, double assistsPerGame, double stealsPerGame, double blocksPerGame) {
+        this.name = name;
+        this.actualTeam = actualTeam;
+        this.birthday = birthday;
+        this.pointsPerGame = pointsPerGame;
+        this.reboundsPerGame = reboundsPerGame;
+        this.assistsPerGame = assistsPerGame;
+        this.stealsPerGame = stealsPerGame;
+        this.blocksPerGame = blocksPerGame;
+    }
 
     // Getters
     public String getName() {
