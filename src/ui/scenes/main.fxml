@@ -1,18 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.String?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
-
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Button layoutX="263.0" layoutY="188.0" mnemonicParsing="false" onAction="#showAddPlayer" text="Add Player" />
-      <HBox alignment="CENTER_RIGHT" prefHeight="25.0" prefWidth="600.0">
+      <HBox alignment="CENTER_RIGHT" layoutX="300.0" prefHeight="30.0" prefWidth="300.0" styleClass="top-bar">
          <children>
-            <Button fx:id="btnMinimize" mnemonicParsing="false" onMouseClicked="#handleMouseClick" prefWidth="30.0" text="—" />
-            <Button fx:id="btnClose" layoutX="558.0" layoutY="10.0" mnemonicParsing="false" onMouseClicked="#handleMouseClick" prefWidth="30.0" text="X" />
+            <Button fx:id="btnMinimize" mnemonicParsing="false" onMouseClicked="#handleMouseClick" prefHeight="30.0" prefWidth="30.0" styleClass="top-bar-button" text="—" />
+            <Button fx:id="btnClose" layoutX="558.0" layoutY="10.0" mnemonicParsing="false" onMouseClicked="#handleMouseClick" prefHeight="30.0" prefWidth="30.0" text="X">
+               <styleClass>
+                  <String fx:value="top-bar-button" />
+                  <String fx:value="close-button" />
+               </styleClass></Button>
          </children>
+      </HBox>
+      <HBox alignment="CENTER_LEFT" prefHeight="30.0" prefWidth="300.0" styleClass="top-bar">
+         <children>
+            <Label styleClass="top-bar" text="Basketball Database" />
+         </children>
+         <padding>
+            <Insets left="10.0" />
+         </padding>
       </HBox>
    </children>
 </Pane>

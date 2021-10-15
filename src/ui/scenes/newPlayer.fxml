@@ -8,68 +8,79 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 
-
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="350.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <VBox alignment="CENTER" prefHeight="550.0" prefWidth="350.0" spacing="10.0">
+      <VBox prefHeight="550.0" prefWidth="350.0">
          <children>
-            <Label layoutX="169.0" layoutY="91.0" styleClass="title" text="Information">
-               <VBox.margin>
-                  <Insets bottom="10.0" />
-               </VBox.margin>
-            </Label>
-            <Label text="Name" />
-            <TextField fx:id="txtName" maxWidth="200.0" promptText="Full Name" />
-            <Label layoutX="144.0" layoutY="222.0" text="Actual Team" />
-            <TextField fx:id="txtTeam" layoutX="60.0" layoutY="249.0" maxWidth="200.0" promptText="Team's Name" />
-            <Label layoutX="127.0" layoutY="253.0" text="Birthdate" />
-            <TextField fx:id="txtTeam1" alignment="CENTER" layoutX="85.0" layoutY="180.0" maxWidth="200.0" promptText="YYYY-MM-DD" />
-            <Label layoutX="154.0" layoutY="59.0" styleClass="title" text="Stats Per Game">
-               <VBox.margin>
-                  <Insets bottom="10.0" top="10.0" />
-               </VBox.margin>
-            </Label>
-            <HBox maxWidth="200.0" spacing="10.0">
+            <HBox alignment="CENTER_LEFT" maxHeight="30.0" minHeight="30.0" prefHeight="30.0" prefWidth="300.0" styleClass="top-bar">
                <children>
-                  <VBox alignment="CENTER" spacing="10.0">
-                     <children>
-                        <Label text="Points" />
-                        <TextField fx:id="txtPoints" alignment="CENTER" maxWidth="200.0" promptText="0.0" />
-                     </children>
-                  </VBox>
-                  <VBox alignment="CENTER" layoutX="10.0" layoutY="10.0" spacing="10.0">
-                     <children>
-                        <Label text="Rebounds" />
-                        <TextField fx:id="txtRebounds" alignment="CENTER" maxWidth="200.0" promptText="0.0" />
-                     </children>
-                  </VBox>
+                  <Label styleClass="top-bar" text="Adding Player" />
                </children>
+               <padding>
+                  <Insets left="10.0" />
+               </padding>
             </HBox>
-            <HBox layoutX="85.0" layoutY="379.0" maxWidth="200.0" spacing="10.0">
+            <VBox alignment="CENTER" prefHeight="550.0" prefWidth="350.0" spacing="10.0">
                <children>
-                  <VBox alignment="CENTER" spacing="10.0">
+                  <Label layoutX="169.0" layoutY="91.0" styleClass="title" text="Personal Information">
+                     <VBox.margin>
+                        <Insets bottom="10.0" />
+                     </VBox.margin>
+                  </Label>
+                  <Label text="Name" />
+                  <TextField fx:id="txtName" maxWidth="200.0" promptText="Full Name" />
+                  <Label layoutX="144.0" layoutY="222.0" text="Actual Team" />
+                  <TextField fx:id="txtTeam" layoutX="60.0" layoutY="249.0" maxWidth="200.0" promptText="Team's Name" />
+                  <Label layoutX="127.0" layoutY="253.0" text="Birthdate" />
+                  <TextField fx:id="txtTeam1" alignment="CENTER" layoutX="85.0" layoutY="180.0" maxWidth="200.0" promptText="YYYY-MM-DD" />
+                  <Label layoutX="154.0" layoutY="59.0" styleClass="title" text="Stats Per Game">
+                     <VBox.margin>
+                        <Insets bottom="10.0" top="10.0" />
+                     </VBox.margin>
+                  </Label>
+                  <HBox maxWidth="200.0" spacing="10.0">
                      <children>
-                        <Label text="Assists" />
-                        <TextField fx:id="txtAssists" alignment="CENTER" maxWidth="200.0" promptText="0.0" />
+                        <VBox alignment="CENTER" spacing="10.0">
+                           <children>
+                              <Label text="Points" />
+                              <TextField fx:id="txtPoints" alignment="CENTER" maxWidth="200.0" promptText="0.0" />
+                           </children>
+                        </VBox>
+                        <VBox alignment="CENTER" layoutX="10.0" layoutY="10.0" spacing="10.0">
+                           <children>
+                              <Label text="Rebounds" />
+                              <TextField fx:id="txtRebounds" alignment="CENTER" maxWidth="200.0" promptText="0.0" />
+                           </children>
+                        </VBox>
                      </children>
-                  </VBox>
-                  <VBox alignment="CENTER" layoutX="10.0" layoutY="10.0" spacing="10.0">
+                  </HBox>
+                  <HBox layoutX="85.0" layoutY="379.0" maxWidth="200.0" spacing="10.0">
                      <children>
-                        <Label text="Blocks" />
-                        <TextField fx:id="txtBlocks" alignment="CENTER" maxWidth="200.0" promptText="0.0" />
+                        <VBox alignment="CENTER" spacing="10.0">
+                           <children>
+                              <Label text="Assists" />
+                              <TextField fx:id="txtAssists" alignment="CENTER" maxWidth="200.0" promptText="0.0" />
+                           </children>
+                        </VBox>
+                        <VBox alignment="CENTER" layoutX="10.0" layoutY="10.0" spacing="10.0">
+                           <children>
+                              <Label text="Blocks" />
+                              <TextField fx:id="txtBlocks" alignment="CENTER" maxWidth="200.0" promptText="0.0" />
+                           </children>
+                        </VBox>
                      </children>
-                  </VBox>
+                  </HBox>
+                  <HBox alignment="CENTER" maxWidth="200.0" spacing="10.0">
+                     <children>
+                        <Button cancelButton="true" mnemonicParsing="false" onAction="#goBack" prefWidth="95.0" styleClass="cancel-button" text="Cancel" />
+                        <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#addPlayer" prefWidth="95.0" text="Add Player" />
+                     </children>
+                     <VBox.margin>
+                        <Insets top="20.0" />
+                     </VBox.margin>
+                  </HBox>
                </children>
-            </HBox>
-            <HBox alignment="CENTER" maxWidth="200.0" spacing="10.0">
-               <children>
-                  <Button cancelButton="true" mnemonicParsing="false" onAction="#goBack" prefWidth="95.0" styleClass="cancel-button" text="Cancel" />
-                  <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#addPlayer" prefWidth="95.0" text="Add Player" />
-               </children>
-               <VBox.margin>
-                  <Insets top="20.0" />
-               </VBox.margin>
-            </HBox>
+            </VBox>
          </children>
       </VBox>
    </children>

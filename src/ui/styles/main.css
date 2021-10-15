@@ -1,6 +1,13 @@
+@import url('https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;700&display=swap');
+
 .root {
-    -fx-font-family: "Electrolize";
-    -fx-background-color: #ffffff;
+    -fx-font-family: 'Chakra Petch', sans-serif;
+    -fx-background-color: #0d0d11;
+}
+
+.top-bar {
+    -fx-background-color: #060608;
+    -fx-text-fill: #ffffff;
 }
 
 /* Buttons */
@@ -20,3 +27,13 @@
     -fx-text-fill: #ffa724;
 }
 /**/
+
+.top-bar-button {
+    -fx-background-color: transparent;
+    -fx-text-fill: #ffffff;
+}
+
+.close-button:hover {
+    -fx-background-color: #ffa724;
+    -fx-text-fill: #060608;
+}
