@@ -10,7 +10,7 @@
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Button layoutX="263.0" layoutY="188.0" mnemonicParsing="false" onAction="#showAddPlayer" text="Add Player" />
-      <HBox alignment="CENTER_RIGHT" layoutX="300.0" prefHeight="30.0" prefWidth="300.0" styleClass="top-bar">
+      <HBox alignment="CENTER_RIGHT" layoutX="300.0" onMouseDragged="#windowDragged" onMousePressed="#windowPressed" prefHeight="30.0" prefWidth="300.0" styleClass="top-bar">
          <children>
             <Button fx:id="btnMinimize" mnemonicParsing="false" onMouseClicked="#handleMouseClick" prefHeight="30.0" prefWidth="30.0" styleClass="top-bar-button" text="—" />
             <Button fx:id="btnClose" layoutX="558.0" layoutY="10.0" mnemonicParsing="false" onMouseClicked="#handleMouseClick" prefHeight="30.0" prefWidth="30.0" text="X">
@@ -20,7 +20,7 @@
                </styleClass></Button>
          </children>
       </HBox>
-      <HBox alignment="CENTER_LEFT" prefHeight="30.0" prefWidth="300.0" styleClass="top-bar">
+      <HBox alignment="CENTER_LEFT" onMouseDragged="#windowDragged" onMousePressed="#windowPressed" prefHeight="30.0" prefWidth="300.0" styleClass="top-bar">
          <children>
             <Label styleClass="top-bar" text="Basketball Database" />
          </children>

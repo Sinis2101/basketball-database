@@ -23,6 +23,9 @@ public class DatabaseController {
 
     private Database database;
 
+    private double xOffset = 0;
+    private double yOffset = 0;
+
     public DatabaseController(Database database) {
         this.database = database;
     }
@@ -53,6 +56,20 @@ public class DatabaseController {
         stage.initStyle(StageStyle.TRANSPARENT);
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.show();
+    }
+
+    @FXML
+    void windowDragged(MouseEvent event) {
+        Stage stage = (Stage) btnMinimize.getScene().getWindow();
+        stage.setX(event.getScreenX() + xOffset);
+        stage.setY(event.getScreenY() + yOffset);
+    }
+
+    @FXML
+    void windowPressed(MouseEvent event) {
+        Stage stage = (Stage) btnMinimize.getScene().getWindow();
+        xOffset = stage.getX() - event.getScreenX();
+        yOffset = stage.getY() - event.getScreenY();
     }
 
     public Database getDatabase() {
