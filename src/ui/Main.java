@@ -5,7 +5,9 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import model.Database;
 
 public class Main extends Application {
@@ -23,9 +25,12 @@ public class Main extends Application {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("scenes/main.fxml"));
         fxmlLoader.setController(databaseController);
         Parent root = fxmlLoader.load();
+        Scene scene = new Scene(root);
+        scene.getStylesheets().add("/ui/styles/main.css");
         primaryStage.setTitle("Basketball Database");
         primaryStage.setResizable(false);
-        primaryStage.setScene(new Scene(root));
+        primaryStage.initStyle(StageStyle.TRANSPARENT);
+        primaryStage.setScene(scene);
         primaryStage.show();
     }
 

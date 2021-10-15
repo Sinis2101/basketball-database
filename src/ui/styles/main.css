@@ -1,0 +1,36 @@
+.root {
+    -fx-font-family: "Electrolize";
+    -fx-background-color: #ffffff;
+}
+
+/* Buttons */
+.button {
+    -fx-background-radius: 0 0 0 0;
+    -fx-background-color: #ffa724;
+}
+.button:hover {
+    -fx-background-color: #0d0d11;
+    -fx-text-fill: #ffffff;
+}
+.cancel-button {
+    -fx-background-color: #0d0d11;
+    -fx-text-fill: #ffffff;
+}
+.cancel-button:hover {
+    -fx-text-fill: #ffa724;
+}
+/**/
+
+/* Text Entries */
+.text-field {
+    -fx-background-radius: 0 0 0 0;
+    -fx-background-color: #ffffff;
+    -fx-border-color: rgba(13, 13, 17, 0.25);
+}
+/**/
+
+.separator *.line {
+    -fx-border-style: solid;
+    -fx-border-width: 0 0 1 0;
+    -fx-border-color: rgba(13, 13, 17, 0.25);
+}
