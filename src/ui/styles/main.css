@@ -20,17 +20,3 @@
     -fx-text-fill: #ffa724;
 }
 /**/
-
-/* Text Entries */
-.text-field {
-    -fx-background-radius: 0 0 0 0;
-    -fx-background-color: #ffffff;
-    -fx-border-color: rgba(13, 13, 17, 0.25);
-}
-/**/
-
-.separator *.line {
-    -fx-border-style: solid;
-    -fx-border-width: 0 0 1 0;
-    -fx-border-color: rgba(13, 13, 17, 0.25);
-}
