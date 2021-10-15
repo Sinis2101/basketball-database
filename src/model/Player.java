@@ -6,18 +6,18 @@ public class Player {
 
     private final String name;
     private String actualTeam;
-    private final LocalDate birthday;
+    private final LocalDate birthdate;
     private double pointsPerGame, reboundsPerGame, assistsPerGame, stealsPerGame, blocksPerGame;
 
-    public Player(String name, String actualTeam, LocalDate birthday) {
+    public Player(String name, String actualTeam, LocalDate birthdate) {
         this.name = name;
         this.actualTeam = actualTeam;
-        this.birthday = birthday;
+        this.birthdate = birthdate;
     }
-    public Player(String name, String actualTeam, LocalDate birthday, double pointsPerGame, double reboundsPerGame, double assistsPerGame, double stealsPerGame, double blocksPerGame) {
+    public Player(String name, String actualTeam, LocalDate birthdate, double pointsPerGame, double reboundsPerGame, double assistsPerGame, double stealsPerGame, double blocksPerGame) {
         this.name = name;
         this.actualTeam = actualTeam;
-        this.birthday = birthday;
+        this.birthdate = birthdate;
         this.pointsPerGame = pointsPerGame;
         this.reboundsPerGame = reboundsPerGame;
         this.assistsPerGame = assistsPerGame;
@@ -33,7 +33,7 @@ public class Player {
         return actualTeam;
     }
     public int getAge() {
-        Period period = Period.between(birthday, LocalDate.now());
+        Period period = Period.between(birthdate, LocalDate.now());
         return period.getYears();
     }
     public double getPointsPerGame() {
