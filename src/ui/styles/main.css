@@ -10,15 +10,28 @@
     -fx-text-fill: #ffffff;
 }
 
-/* Buttons */
 .button {
     -fx-background-radius: 0 0 0 0;
-    -fx-background-color: #ffa724;
 }
+
+/* Buttons */
+.ui-button {
+    -fx-background-radius: 0 0 0 0;
+    -fx-background-color: #0d0d11;
+    -fx-border-color: #ffa724;
+    -fx-text-fill: #ffa724;
+}
+
 .button:hover {
     -fx-background-color: #0d0d11;
     -fx-text-fill: #ffffff;
 }
+
+.ui-button:hover {
+    -fx-background-color: #ffa724;
+    -fx-text-fill: #0e0e12;
+}
+
 .cancel-button {
     -fx-background-color: #0d0d11;
     -fx-text-fill: #ffffff;

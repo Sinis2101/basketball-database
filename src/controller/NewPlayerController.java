@@ -7,6 +7,9 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import model.Database;
+import model.Player;
+
+import java.util.ArrayList;
 
 public class NewPlayerController {
 
@@ -17,7 +20,7 @@ public class NewPlayerController {
     private TextField txtTeam;
 
     @FXML
-    private DatePicker dpBirthdate;
+    private TextField txtBirthdate;
 
     @FXML
     private TextField txtPoints;
@@ -27,6 +30,9 @@ public class NewPlayerController {
 
     @FXML
     private TextField txtAssists;
+
+    @FXML
+    private TextField txtSteals;
 
     @FXML
     private TextField txtBlocks;
@@ -45,12 +51,39 @@ public class NewPlayerController {
 
     @FXML
     void addPlayer(ActionEvent event) {
+        if(checkForm()) {
+            goBack(null);
+        }
+    }
 
+    private boolean checkForm() {
+        ArrayList<TextField> emptyFields = new ArrayList<>();
+
+        if(txtName.getText().isEmpty()) emptyFields.add(txtName);
+        if(txtTeam.getText().isEmpty()) emptyFields.add(txtTeam);
+        if(txtBirthdate.getText().isEmpty()) emptyFields.add(txtBirthdate);
+
+        highlightEmptyFields(emptyFields);
+
+        return emptyFields.isEmpty();
+    }
+
+    private void highlightEmptyFields(ArrayList<TextField> emptyFields) {
+        for(TextField field : emptyFields) {
+            field.setStyle("-fx-border-color: #ffa724;");
+        }
+    }
+
+    @FXML
+    void handleMouseClick(MouseEvent event) {
+        TextField clickedField = (TextField) event.getSource();
+        clickedField.setStyle("-fx-border-color: #16161c;");
     }
 
     @FXML
     void goBack(ActionEvent event) {
         Stage stage = (Stage) txtName.getScene().getWindow();
+        databaseController.getModalOpaque().setVisible(false);
         stage.close();
     }
 

@@ -48,4 +48,6 @@
     -fx-prompt-text-fill: #2b2b33;
     -fx-background-radius: 0 0 0 0;
     -fx-background-color: #16161c;
+    -fx-accent: #2b2b33;
+    -fx-border-color: #16161c;
 }

@@ -6,7 +6,10 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.effect.ColorAdjust;
+import javafx.scene.effect.GaussianBlur;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.shape.Rectangle;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -20,6 +23,9 @@ public class DatabaseController {
 
     @FXML
     private Button btnClose;
+
+    @FXML
+    private Rectangle modalOpaque;
 
     private Database database;
 
@@ -55,6 +61,7 @@ public class DatabaseController {
         stage.setScene(scene);
         stage.initStyle(StageStyle.TRANSPARENT);
         stage.initModality(Modality.APPLICATION_MODAL);
+        modalOpaque.setVisible(true);
         stage.show();
     }
 
@@ -70,6 +77,10 @@ public class DatabaseController {
         Stage stage = (Stage) btnMinimize.getScene().getWindow();
         xOffset = stage.getX() - event.getScreenX();
         yOffset = stage.getY() - event.getScreenY();
+    }
+
+    public Rectangle getModalOpaque() {
+        return modalOpaque;
     }
 
     public Database getDatabase() {
