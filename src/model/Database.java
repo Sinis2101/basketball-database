@@ -8,7 +8,6 @@ import java.util.ArrayList;
 
 public class Database {
 
-    private int playersAmount;
     private ArrayList<Player> players; // For testing purposes only. Players will not be stored on a linked list.
 
     public Database() {

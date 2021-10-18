@@ -34,21 +34,27 @@
       <VBox layoutY="30.0" prefHeight="510.0" prefWidth="960.0" spacing="15.0">
          <children>
             <Button mnemonicParsing="false" onAction="#showAddPlayer" styleClass="ui-button" text="Add Player" />
-            <TableView fx:id="tvPlayers" prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+            <TableView fx:id="tvPlayers" maxHeight="400.0" maxWidth="930.0" minHeight="400.0" minWidth="930.0" prefHeight="400.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
               <columns>
-                <TableColumn fx:id="tcName" editable="false" maxWidth="315.0" minWidth="315.0" prefWidth="315.0" resizable="false" sortable="false" text="Name" />
-                <TableColumn fx:id="tcTeam" editable="false" maxWidth="315.0" minWidth="315.0" prefWidth="315.0" resizable="false" sortable="false" text="Actual Team" />
-                  <TableColumn fx:id="tcAge" editable="false" maxWidth="50.0" minWidth="50.0" prefWidth="50.0" resizable="false" sortable="false" text="Age" />
-                  <TableColumn fx:id="tcPoints" editable="false" maxWidth="50.0" minWidth="50.0" prefWidth="50.0" resizable="false" sortable="false" text="PG" />
-                  <TableColumn fx:id="tcRebounds" editable="false" maxWidth="50.0" minWidth="50.0" prefWidth="50.0" resizable="false" sortable="false" text="RG" />
-                  <TableColumn fx:id="tcAssists" editable="false" maxWidth="50.0" minWidth="50.0" prefWidth="50.0" resizable="false" sortable="false" text="AG" />
-                  <TableColumn fx:id="tcSteals" editable="false" maxWidth="50.0" minWidth="50.0" prefWidth="50.0" resizable="false" sortable="false" text="SG" />
-                  <TableColumn fx:id="tcBlocks" editable="false" maxWidth="50.0" minWidth="50.0" prefWidth="50.0" resizable="false" sortable="false" text="BG" />
+                <TableColumn fx:id="tcName" editable="false" maxWidth="290.0" minWidth="290.0" prefWidth="290.0" resizable="false" sortable="false" styleClass="table-column-first" text="Name" />
+                <TableColumn fx:id="tcTeam" editable="false" maxWidth="295.0" minWidth="295.0" prefWidth="295.0" resizable="false" sortable="false" text="Actual Team" />
+                  <TableColumn fx:id="tcAge" editable="false" maxWidth="55.0" minWidth="55.0" prefWidth="55.0" resizable="false" sortable="false" styleClass="table-column-numbers" text="Age" />
+                  <TableColumn fx:id="tcPoints" editable="false" maxWidth="55.0" minWidth="55.0" prefWidth="55.0" resizable="false" sortable="false" styleClass="table-column-numbers" text="PG" />
+                  <TableColumn fx:id="tcRebounds" editable="false" maxWidth="55.0" minWidth="55.0" prefWidth="55.0" resizable="false" sortable="false" styleClass="table-column-numbers" text="RG" />
+                  <TableColumn fx:id="tcAssists" editable="false" maxWidth="55.0" minWidth="55.0" prefWidth="55.0" resizable="false" sortable="false" styleClass="table-column-numbers" text="AG" />
+                  <TableColumn fx:id="tcSteals" editable="false" maxWidth="55.0" minWidth="55.0" prefWidth="55.0" resizable="false" sortable="false" styleClass="table-column-numbers" text="SG" />
+                  <TableColumn fx:id="tcBlocks" editable="false" maxWidth="55.0" minWidth="55.0" prefWidth="55.0" resizable="false" sortable="false" styleClass="table-column-numbers" text="BG" />
               </columns>
                <columnResizePolicy>
                   <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                </columnResizePolicy>
             </TableView>
+            <HBox alignment="CENTER_LEFT" spacing="15.0">
+               <children>
+                  <Button mnemonicParsing="false" onAction="#importPlayers" styleClass="ui-button" text="Import Players" />
+                  <Label fx:id="lblPlayers" text="Players: 0" />
+               </children>
+            </HBox>
          </children>
          <padding>
             <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />

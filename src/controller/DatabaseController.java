@@ -1,28 +1,30 @@
 package controller;
 
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableRow;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.effect.ColorAdjust;
 import javafx.scene.effect.GaussianBlur;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.shape.Rectangle;
+import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import model.Database;
 import model.Player;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -66,6 +68,9 @@ public class DatabaseController implements Initializable {
     @FXML
     private TableColumn<Player, Double> tcBlocks;
 
+    @FXML
+    private Label lblPlayers;
+
     private Database database;
 
     private double xOffset = 0;
@@ -88,6 +93,7 @@ public class DatabaseController implements Initializable {
         tcBlocks.setCellValueFactory(new PropertyValueFactory<Player, Double>("blocksPerGame"));
 
         tvPlayers.setItems(playersObservableList);
+        lblPlayers.setText("Players: " + database.getPlayers().size());
     }
     
     @FXML
@@ -120,6 +126,18 @@ public class DatabaseController implements Initializable {
     }
 
     @FXML
+    public void importPlayers(ActionEvent event) throws IOException {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Select File");
+        File file = fileChooser.showOpenDialog(lblPlayers.getScene().getWindow());
+
+        if (file != null) {
+            int count = database.importPlayers(file.getPath(), ",");
+            initializeTableView();
+        }
+    }
+
+    @FXML
     void windowDragged(MouseEvent event) {
         Stage stage = (Stage) btnMinimize.getScene().getWindow();
         stage.setX(event.getScreenX() + xOffset);
@@ -144,5 +162,15 @@ public class DatabaseController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         initializeTableView();
+        preventColumnReordering(tvPlayers);
     }
+
+    public static <T> void preventColumnReordering(TableView<T> tableView) {
+        Platform.runLater(() -> {
+            for (Node header : tableView.lookupAll(".column-header")) {
+                header.addEventFilter(MouseEvent.MOUSE_DRAGGED, Event::consume);
+            }
+        });
+    }
+
 }
