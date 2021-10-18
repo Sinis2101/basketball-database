@@ -13,8 +13,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.effect.ColorAdjust;
-import javafx.scene.effect.GaussianBlur;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.FileChooser;
@@ -40,6 +38,8 @@ public class DatabaseController implements Initializable {
     @FXML
     private Rectangle modalOpaque;
 
+    @FXML
+    private TextField txtSearch;
 
     @FXML
     private TableView<Player> tvPlayers;

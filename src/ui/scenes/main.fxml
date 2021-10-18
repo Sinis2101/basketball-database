@@ -6,6 +6,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
@@ -33,7 +34,12 @@
       </HBox>
       <VBox layoutY="30.0" prefHeight="510.0" prefWidth="960.0" spacing="15.0">
          <children>
-            <Button mnemonicParsing="false" onAction="#showAddPlayer" styleClass="ui-button" text="Add Player" />
+            <HBox alignment="CENTER_LEFT" layoutX="25.0" layoutY="480.0" spacing="15.0">
+               <children>
+                  <Button mnemonicParsing="false" onAction="#showAddPlayer" styleClass="ui-button" text="Add Player" />
+                  <TextField fx:id="txtSearch" prefWidth="300.0" promptText="Search Player" />
+               </children>
+            </HBox>
             <TableView fx:id="tvPlayers" maxHeight="400.0" maxWidth="930.0" minHeight="400.0" minWidth="930.0" prefHeight="400.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
               <columns>
                 <TableColumn fx:id="tcName" editable="false" maxWidth="290.0" minWidth="290.0" prefWidth="290.0" resizable="false" sortable="false" styleClass="table-column-first" text="Name" />
