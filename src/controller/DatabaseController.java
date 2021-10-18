@@ -13,6 +13,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.FileChooser;
@@ -123,6 +125,16 @@ public class DatabaseController implements Initializable {
         stage.initModality(Modality.APPLICATION_MODAL);
         modalOpaque.setVisible(true);
         stage.show();
+    }
+
+    @FXML
+    public void searchPlayer() {
+
+    }
+
+    @FXML
+    void handleKeyPress(KeyEvent event) {
+        if(event.getCode().equals(KeyCode.ENTER)) searchPlayer();
     }
 
     @FXML
