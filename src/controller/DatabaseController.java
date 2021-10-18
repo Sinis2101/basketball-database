@@ -134,7 +134,11 @@ public class DatabaseController implements Initializable {
 
     @FXML
     void handleKeyPress(KeyEvent event) {
-        if(event.getCode().equals(KeyCode.ENTER)) searchPlayer();
+        if(event.getCode().equals(KeyCode.ENTER)) {
+            if(!txtSearch.getText().isEmpty()) {
+                searchPlayer();
+            }
+        }
     }
 
     @FXML
