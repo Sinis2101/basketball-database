@@ -87,6 +87,11 @@
     -fx-pref-height: 30;
 }
 
+.table-view .column-header .label {
+    -fx-text-fill: #0d0d11;
+    -fx-font-weight: normal;
+}
+
 .table-view .table-cell{
     -fx-border-color: transparent;
 }
