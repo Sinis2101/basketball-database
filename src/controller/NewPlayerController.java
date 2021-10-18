@@ -70,17 +70,17 @@ public class NewPlayerController {
         }
     }
 
-    private boolean checkDate() {
+    private LocalDate checkDate() {
+        LocalDate birthdate;
         try {
             int year = Integer.parseInt(txtYear.getText());
             int month = Integer.parseInt(txtMonth.getText());
             int day = Integer.parseInt(txtDay.getText());
-            LocalDate birthdate = LocalDate.of(year, month, day);
+            birthdate = LocalDate.of(year, month, day);
         } catch (Exception e) {
-            System.out.println("BAD DATE");
-            return false;
+            return null;
         }
-        return true;
+        return birthdate;
     }
 
     private boolean checkForm() {
@@ -91,7 +91,7 @@ public class NewPlayerController {
         if(txtYear.getText().isEmpty()) emptyFields.add(txtYear);
         if(txtMonth.getText().isEmpty()) emptyFields.add(txtMonth);
         if(txtDay.getText().isEmpty()) emptyFields.add(txtDay);
-        if(!checkDate()) {
+        if(checkDate()==null) {
             emptyFields.add(txtYear);
             emptyFields.add(txtMonth);
             emptyFields.add(txtDay);
