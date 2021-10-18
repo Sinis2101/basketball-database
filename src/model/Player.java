@@ -2,7 +2,7 @@ package model;
 import java.time.LocalDate;
 import java.time.Period;
 
-public class Player {
+public class Player implements Comparable<Player>{
 
     private final String name;
     private String actualTeam;
@@ -56,5 +56,14 @@ public class Player {
     public void setActualTeam(String actualTeam) {
         this.actualTeam = actualTeam;
     }
+	@Override
+	public int compareTo(Player o) {
+		System.out.println(name+" vs "+o.getName()+"-> valor: "+name.compareTo(o.getName()));
+		return name.compareTo(o.getName());
+	}
+	
+	public String toString() {
+		return name+" "+actualTeam;
+	}
 
 }

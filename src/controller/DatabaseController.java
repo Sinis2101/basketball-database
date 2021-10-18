@@ -83,7 +83,9 @@ public class DatabaseController implements Initializable {
     }
 
     public void initializeTableView() {
-        ObservableList<Player> playersObservableList = FXCollections.observableList(database.getPlayers());
+    	//database.getPlayersInList().clear();
+    	//database.fromTreeToArrayList(database.getBinaryTreePlayers().getRoot());
+        ObservableList<Player> playersObservableList = FXCollections.observableList(database.getPlayersInList());
 
         tcName.setCellValueFactory(new PropertyValueFactory<Player, String>("name"));
         tcTeam.setCellValueFactory(new PropertyValueFactory<Player, String>("actualTeam"));
@@ -95,7 +97,11 @@ public class DatabaseController implements Initializable {
         tcBlocks.setCellValueFactory(new PropertyValueFactory<Player, Double>("blocksPerGame"));
 
         tvPlayers.setItems(playersObservableList);
-        lblPlayers.setText("Players: " + database.getPlayers().size());
+        lblPlayers.setText("Players: " + database.getPlayersInList().size());
+        
+        //System.out.println("ArrayList en preorden: ");
+        //database.getBinaryTreePlayers().recorrerPreorden(database.getBinaryTreePlayers().getRoot());
+        //System.out.println("___________________");
     }
     
     @FXML
@@ -148,7 +154,7 @@ public class DatabaseController implements Initializable {
         File file = fileChooser.showOpenDialog(lblPlayers.getScene().getWindow());
 
         if (file != null) {
-            int count = database.importPlayers(file.getPath(), ",");
+            database.importPlayers(file.getPath(), ",");
             initializeTableView();
         }
     }

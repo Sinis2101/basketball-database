@@ -5,13 +5,18 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import MyBinaryTree_data_structure.BinaryTree;
 
 public class Database {
-
-    private ArrayList<Player> players; // For testing purposes only. Players will not be stored on a linked list.
-
+	
+	private BinaryTree<Player> players;
+    private ArrayList<Player> playersInList; // For testing purposes only. Players will not be stored on a list.
+    
+    
     public Database() {
-        players = new ArrayList<>();
+    	players = new BinaryTree<>();
+    	playersInList = new ArrayList<>();
+    	
         // Players added for testing purposes only. Delete later.
         /*players.add(new Player("Juan Felipe Sinisterra", "Miami Heats", LocalDate.of(2001, 9,21), 0.0, 0.0,0.0,0.0,0.0));
         players.add(new Player("Tomas Ossa", "Lakers", LocalDate.of(2001, 9,21), 0.0, 0.0,0.0,0.0,0.0));
@@ -19,11 +24,12 @@ public class Database {
     }
 
     public void addPlayer(Player player) {
-        players.add(player);
+        players.createNode(player);
+        playersInList.add(player);
     }
 
-    public int importPlayers(String path, String separator) throws IOException {
-        int importAmount = 0;
+    public void importPlayers(String path, String separator) throws IOException {
+        //int importAmount = 0;
         BufferedReader br = new BufferedReader(new FileReader(path));
         String line = br.readLine();
         line = br.readLine();
@@ -43,17 +49,22 @@ public class Database {
             Player player = new Player(name, actualTeam, birthday, pointsPerGame, reboundsPerGame, assistsPerGame, stealsPerGame, blocksPerGame);
 
             addPlayer(player);
-            importAmount++;
+            //importAmount++;
 
             line = br.readLine();
         }
 
         br.close();
 
-        return importAmount;
+        //return importAmount;
+    }
+    
+    public BinaryTree<Player> getBinaryTreePlayers(){
+    	return players;
     }
 
-    public ArrayList<Player> getPlayers() {
-        return players;
+    public ArrayList<Player> getPlayersInList() {
+        return playersInList;
     }
+
 }
