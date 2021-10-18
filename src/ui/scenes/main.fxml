@@ -41,6 +41,9 @@
                </children>
             </HBox>
             <TableView fx:id="tvPlayers" maxHeight="400.0" maxWidth="930.0" minHeight="400.0" minWidth="930.0" prefHeight="400.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+                <placeholder>
+                    <Label text="Database is empty."/>
+                </placeholder>
               <columns>
                 <TableColumn fx:id="tcName" editable="false" maxWidth="290.0" minWidth="290.0" prefWidth="290.0" resizable="false" sortable="false" styleClass="table-column-first" text="Name" />
                 <TableColumn fx:id="tcTeam" editable="false" maxWidth="295.0" minWidth="295.0" prefWidth="295.0" resizable="false" sortable="false" text="Actual Team" />
