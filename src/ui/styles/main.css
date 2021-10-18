@@ -50,3 +50,8 @@
     -fx-background-color: #ffa724;
     -fx-text-fill: #060608;
 }
+
+.table-view {
+    -fx-background-color: #0e0e12;
+}
+

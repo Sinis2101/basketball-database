@@ -49,6 +49,7 @@ public class NewPlayerController {
 
     private Database database;
     private DatabaseController databaseController;
+    private LocalDate birthdate;
 
     public NewPlayerController(DatabaseController databaseController) {
         database = databaseController.getDatabase();
@@ -60,27 +61,30 @@ public class NewPlayerController {
         if(checkForm()) {
             Player player = new Player(txtName.getText(),
                     txtTeam.getText(),
-                    null,
+                    birthdate,
                     Double.parseDouble(txtPoints.getText()),
                     Double.parseDouble(txtRebounds.getText()),
                     Double.parseDouble(txtAssists.getText()),
                     Double.parseDouble(txtSteals.getText()),
                     Double.parseDouble(txtBlocks.getText()));
+            database.addPlayer(player);
             goBack(null);
+            databaseController.initializeTableView();
         }
     }
 
     private LocalDate checkDate() {
-        LocalDate birthdate;
+        LocalDate tempBirthdate;
         try {
             int year = Integer.parseInt(txtYear.getText());
             int month = Integer.parseInt(txtMonth.getText());
             int day = Integer.parseInt(txtDay.getText());
-            birthdate = LocalDate.of(year, month, day);
+            tempBirthdate = LocalDate.of(year, month, day);
         } catch (Exception e) {
             return null;
         }
-        return birthdate;
+        birthdate = tempBirthdate;
+        return tempBirthdate;
     }
 
     private boolean checkForm() {

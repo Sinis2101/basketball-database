@@ -4,13 +4,23 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.time.LocalDate;
+import java.util.ArrayList;
 
 public class Database {
 
     private int playersAmount;
+    private ArrayList<Player> players; // For testing purposes only. Players will not be stored on a linked list.
+
+    public Database() {
+        players = new ArrayList<>();
+        // Players added for testing purposes only. Delete later.
+        players.add(new Player("Juan Felipe Sinisterra", "Miami Heats", LocalDate.of(2001, 9,21), 0.0, 0.0,0.0,0.0,0.0));
+        players.add(new Player("Tomas Ossa", "Lakers", LocalDate.of(2001, 9,21), 0.0, 0.0,0.0,0.0,0.0));
+        players.add(new Player("Daniela Bonilla", "Bulls", LocalDate.of(2001, 9,21), 0.0, 0.0,0.0,0.0,0.0));
+    }
 
     public void addPlayer(Player player) {
-
+        players.add(player);
     }
 
     public int importPlayers(String path, String separator) throws IOException {
@@ -44,4 +54,7 @@ public class Database {
         return importAmount;
     }
 
+    public ArrayList<Player> getPlayers() {
+        return players;
+    }
 }

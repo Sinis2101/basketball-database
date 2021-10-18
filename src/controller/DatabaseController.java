@@ -1,11 +1,18 @@
 package controller;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableRow;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.effect.ColorAdjust;
 import javafx.scene.effect.GaussianBlur;
 import javafx.scene.input.MouseEvent;
@@ -14,9 +21,13 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import model.Database;
-import java.io.IOException;
+import model.Player;
 
-public class DatabaseController {
+import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
+
+public class DatabaseController implements Initializable {
 
     @FXML
     private Button btnMinimize;
@@ -27,6 +38,34 @@ public class DatabaseController {
     @FXML
     private Rectangle modalOpaque;
 
+
+    @FXML
+    private TableView<Player> tvPlayers;
+
+    @FXML
+    private TableColumn<Player, String> tcName;
+
+    @FXML
+    private TableColumn<Player, String> tcTeam;
+
+    @FXML
+    private TableColumn<Player, Integer> tcAge;
+
+    @FXML
+    private TableColumn<Player, Double> tcPoints;
+
+    @FXML
+    private TableColumn<Player, Double> tcRebounds;
+
+    @FXML
+    private TableColumn<Player, Double> tcAssists;
+
+    @FXML
+    private TableColumn<Player, Double> tcSteals;
+
+    @FXML
+    private TableColumn<Player, Double> tcBlocks;
+
     private Database database;
 
     private double xOffset = 0;
@@ -36,6 +75,21 @@ public class DatabaseController {
         this.database = database;
     }
 
+    public void initializeTableView() {
+        ObservableList<Player> playersObservableList = FXCollections.observableList(database.getPlayers());
+
+        tcName.setCellValueFactory(new PropertyValueFactory<Player, String>("name"));
+        tcTeam.setCellValueFactory(new PropertyValueFactory<Player, String>("actualTeam"));
+        tcAge.setCellValueFactory(new PropertyValueFactory<Player, Integer>("age"));
+        tcPoints.setCellValueFactory(new PropertyValueFactory<Player, Double>("pointsPerGame"));
+        tcRebounds.setCellValueFactory(new PropertyValueFactory<Player, Double>("reboundsPerGame"));
+        tcAssists.setCellValueFactory(new PropertyValueFactory<Player, Double>("assistsPerGame"));
+        tcSteals.setCellValueFactory(new PropertyValueFactory<Player, Double>("stealsPerGame"));
+        tcBlocks.setCellValueFactory(new PropertyValueFactory<Player, Double>("blocksPerGame"));
+
+        tvPlayers.setItems(playersObservableList);
+    }
+    
     @FXML
     public void handleMouseClick(MouseEvent event) {
         Stage stage = (Stage) btnMinimize.getScene().getWindow();
@@ -85,5 +139,10 @@ public class DatabaseController {
 
     public Database getDatabase() {
         return database;
+    }
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        initializeTableView();
     }
 }
