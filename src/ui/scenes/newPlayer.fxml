@@ -32,7 +32,13 @@
                   <Label layoutX="144.0" layoutY="222.0" text="Actual Team *" />
                   <TextField fx:id="txtTeam" layoutX="60.0" layoutY="249.0" maxWidth="200.0" onMouseClicked="#handleMouseClick" promptText="Team's Name" />
                   <Label layoutX="127.0" layoutY="253.0" text="Birthdate *" />
-                  <TextField fx:id="txtBirthdate" alignment="CENTER" layoutX="85.0" layoutY="180.0" maxWidth="200.0" onMouseClicked="#handleMouseClick" promptText="YYYY-MM-DD" />
+                  <HBox alignment="CENTER" maxWidth="200.0" prefWidth="200.0" spacing="10.0">
+                     <children>
+                        <TextField fx:id="txtYear" alignment="CENTER" maxWidth="200.0" onMouseClicked="#handleMouseClick" promptText="Year" />
+                        <TextField fx:id="txtMonth" alignment="CENTER" layoutX="36.0" layoutY="10.0" maxWidth="200.0" onMouseClicked="#handleMouseClick" promptText="Month" />
+                        <TextField fx:id="txtDay" alignment="CENTER" layoutX="115.0" layoutY="10.0" maxWidth="200.0" onMouseClicked="#handleMouseClick" promptText="Day" />
+                     </children>
+                  </HBox>
                   <Label layoutX="154.0" layoutY="59.0" styleClass="title" text="Stats Per Game">
                      <VBox.margin>
                         <Insets bottom="10.0" top="10.0" />

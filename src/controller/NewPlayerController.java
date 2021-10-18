@@ -9,6 +9,7 @@ import javafx.stage.Stage;
 import model.Database;
 import model.Player;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class NewPlayerController {
@@ -20,7 +21,13 @@ public class NewPlayerController {
     private TextField txtTeam;
 
     @FXML
-    private TextField txtBirthdate;
+    private TextField txtYear;
+
+    @FXML
+    private TextField txtMonth;
+
+    @FXML
+    private TextField txtDay;
 
     @FXML
     private TextField txtPoints;
@@ -48,12 +55,32 @@ public class NewPlayerController {
         this.databaseController = databaseController;
     }
 
-
     @FXML
     void addPlayer(ActionEvent event) {
         if(checkForm()) {
+            Player player = new Player(txtName.getText(),
+                    txtTeam.getText(),
+                    null,
+                    Double.parseDouble(txtPoints.getText()),
+                    Double.parseDouble(txtRebounds.getText()),
+                    Double.parseDouble(txtAssists.getText()),
+                    Double.parseDouble(txtSteals.getText()),
+                    Double.parseDouble(txtBlocks.getText()));
             goBack(null);
         }
+    }
+
+    private boolean checkDate() {
+        try {
+            int year = Integer.parseInt(txtYear.getText());
+            int month = Integer.parseInt(txtMonth.getText());
+            int day = Integer.parseInt(txtDay.getText());
+            LocalDate birthdate = LocalDate.of(year, month, day);
+        } catch (Exception e) {
+            System.out.println("BAD DATE");
+            return false;
+        }
+        return true;
     }
 
     private boolean checkForm() {
@@ -61,7 +88,14 @@ public class NewPlayerController {
 
         if(txtName.getText().isEmpty()) emptyFields.add(txtName);
         if(txtTeam.getText().isEmpty()) emptyFields.add(txtTeam);
-        if(txtBirthdate.getText().isEmpty()) emptyFields.add(txtBirthdate);
+        if(txtYear.getText().isEmpty()) emptyFields.add(txtYear);
+        if(txtMonth.getText().isEmpty()) emptyFields.add(txtMonth);
+        if(txtDay.getText().isEmpty()) emptyFields.add(txtDay);
+        if(!checkDate()) {
+            emptyFields.add(txtYear);
+            emptyFields.add(txtMonth);
+            emptyFields.add(txtDay);
+        }
 
         highlightEmptyFields(emptyFields);
 
