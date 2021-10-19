@@ -67,8 +67,12 @@ public class Database {
 
         //return importAmount;
     }
-    
-    public Player findPlayer(TreeNode<Player> current, String name) {    	
+
+    public Player findPlayer(String name) {
+        return findPlayer(players.getRoot(), name);
+    }
+
+    private Player findPlayer(TreeNode<Player> current, String name) {
     	Player findPlayer = null;
     	if (current!=null) {
     		

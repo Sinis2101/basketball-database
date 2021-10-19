@@ -27,9 +27,14 @@ import model.Player;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class DatabaseController implements Initializable {
+
+    @FXML
+    private Button btnSearch;
 
     @FXML
     private Button btnMinimize;
@@ -73,6 +78,9 @@ public class DatabaseController implements Initializable {
     @FXML
     private Label lblPlayers;
 
+    @FXML
+    private Label lblSearchResult;
+
     private Database database;
 
     private double xOffset = 0;
@@ -94,6 +102,13 @@ public class DatabaseController implements Initializable {
                 header.addEventFilter(MouseEvent.MOUSE_DRAGGED, Event::consume);
             }
         });
+    }
+
+    @FXML
+    void cleanSearch(ActionEvent event) {
+        txtSearch.setText("");
+        initializeTableView();
+        btnSearch.setVisible(false);
     }
 
     public void initializeTableView() {
@@ -196,15 +211,42 @@ public class DatabaseController implements Initializable {
     }
      */
     @FXML
-    public void searchPlayer() {
+    public void search() {
+        if(!txtSearch.getText().isEmpty()) {
+            if (btnSearch.getText().equals("Search")) {
+                String originalSearch = txtSearch.getText();
 
+                long startTime = System.nanoTime();
+                Player searchResult = database.findPlayer(txtSearch.getText());
+                long endTime = System.nanoTime();
+                double searchTime = (double)((endTime-startTime))/1000000;
+
+                if (searchResult != null) {
+                    List<Player> tempList = new ArrayList<>();
+                    tempList.add(searchResult);
+
+                    ObservableList<Player> clientsObservableList = FXCollections.observableList(tempList);
+
+                    tvPlayers.setItems(clientsObservableList);
+                    btnSearch.setText("Clean Search");
+                    lblSearchResult.setText("Search time: " + searchTime + " ms.");
+                } else {
+                    lblSearchResult.setText(originalSearch + " was not found in the database.");
+                }
+            } else {
+                txtSearch.setText("");
+                btnSearch.setText("Search");
+                lblSearchResult.setText("");
+                initializeTableView();
+            }
+        }
     }
 
     @FXML
     void handleKeyPress(KeyEvent event) {
         if(event.getCode().equals(KeyCode.ENTER)) {
             if(!txtSearch.getText().isEmpty()) {
-                searchPlayer();
+                search();
             }
         }
     }

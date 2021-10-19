@@ -149,3 +149,7 @@
 .search-button:hover {
     -fx-text-fill: #ffa724;
 }
+
+.label-result {
+    -fx-text-fill: #ffa724;
+}

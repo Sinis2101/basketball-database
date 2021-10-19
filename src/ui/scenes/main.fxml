@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Rectangle?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="540.0" prefWidth="960.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="540.0" prefWidth="960.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <HBox alignment="CENTER_RIGHT" layoutX="480.0" layoutY="-1.0" onMouseDragged="#windowDragged" onMousePressed="#windowPressed" prefHeight="30.0" prefWidth="480.0" styleClass="top-bar">
          <children>
@@ -37,7 +37,13 @@
             <HBox alignment="CENTER_LEFT" layoutX="25.0" layoutY="480.0" spacing="15.0">
                <children>
                   <Button mnemonicParsing="false" onAction="#showAddPlayer" styleClass="ui-button" text="Add Player" />
-                  <TextField fx:id="txtSearch" onKeyPressed="#handleKeyPress" prefWidth="300.0" promptText="Search Player" />
+                  <HBox prefHeight="100.0">
+                     <children>
+                        <TextField fx:id="txtSearch" onKeyPressed="#handleKeyPress" prefWidth="300.0" promptText="Search Player" />
+                        <Button fx:id="btnSearch" mnemonicParsing="false" onAction="#search" prefWidth="100.0" styleClass="ui-button" text="Search" />
+                     </children>
+                  </HBox>
+                  <Label fx:id="lblSearchResult" styleClass="label-result" />
                </children>
             </HBox>
             <TableView fx:id="tvPlayers" maxHeight="400.0" maxWidth="930.0" minHeight="400.0" minWidth="930.0" prefHeight="400.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
