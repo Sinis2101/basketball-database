@@ -56,8 +56,8 @@ public class NewPlayerController {
     }
 
     @FXML
-    void addPlayer(ActionEvent event) {
-        if(checkForm()) {
+    public void addPlayer(ActionEvent event) {
+        if(checkForm()) {//Si todos los campos están completos
             Player player = new Player(txtName.getText(),
                     txtTeam.getText(),
                     birthdate,
@@ -110,29 +110,30 @@ public class NewPlayerController {
             field.setStyle("-fx-border-color: #ffa724;");
         }
     }
-
+    
     @FXML
-    void handleMouseClick(MouseEvent event) {
-        TextField clickedField = (TextField) event.getSource();
-        clickedField.setStyle("-fx-border-color: #16161c;");
-    }
-
-    @FXML
-    void goBack(ActionEvent event) {
+    public void goBack(ActionEvent event) { //Cancel button
         Stage stage = (Stage) txtName.getScene().getWindow();
         databaseController.getModalOpaque().setVisible(false);
         stage.close();
     }
 
     @FXML
-    void windowDragged(MouseEvent event) {
+    public void handleMouseClick(MouseEvent event) {
+        TextField clickedField = (TextField) event.getSource();
+        clickedField.setStyle("-fx-border-color: #16161c;");
+    }
+
+
+    @FXML
+    public void windowDragged(MouseEvent event) {
         Stage stage = (Stage) txtName.getScene().getWindow();
         stage.setX(event.getScreenX() + xOffset);
         stage.setY(event.getScreenY() + yOffset);
     }
 
     @FXML
-    void windowPressed(MouseEvent event) {
+    public void windowPressed(MouseEvent event) {
         Stage stage = (Stage) txtName.getScene().getWindow();
         xOffset = stage.getX() - event.getScreenX();
         yOffset = stage.getY() - event.getScreenY();

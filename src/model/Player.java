@@ -9,6 +9,8 @@ public class Player implements Comparable<Player>{
     private final LocalDate birthdate;
     private double pointsPerGame, reboundsPerGame, assistsPerGame, stealsPerGame, blocksPerGame;
 
+    
+    
     public Player(String name, String actualTeam, LocalDate birthdate) {
         this.name = name;
         this.actualTeam = actualTeam;
@@ -51,6 +53,10 @@ public class Player implements Comparable<Player>{
     public double getBlocksPerGame() {
         return blocksPerGame;
     }
+    
+    public LocalDate getBirthdate() {
+    	return birthdate;
+    }
 
     // Setters
     public void setActualTeam(String actualTeam) {
@@ -58,7 +64,6 @@ public class Player implements Comparable<Player>{
     }
 	@Override
 	public int compareTo(Player o) {
-		System.out.println(name+" vs "+o.getName()+"-> valor: "+name.compareTo(o.getName()));
 		return name.compareTo(o.getName());
 	}
 	

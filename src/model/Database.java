@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import MyBinaryTree_data_structure.BinaryTree;
+import MyBinaryTree_data_structure.TreeNode;
 
 public class Database {
 	
@@ -25,7 +26,15 @@ public class Database {
 
     public void addPlayer(Player player) {
         players.createNode(player);
-        playersInList.add(player);
+        playersInList.add(player);        
+    }
+    
+    public void deletePlayer(String player) {
+    	Player findPlayer = findPlayer(players.getRoot(), player);
+    	if (findPlayer!=null) {    	
+    		playersInList.remove(findPlayer);
+        	players.deleteNode(players.getRoot(), findPlayer);
+    	}   	    	
     }
 
     public void importPlayers(String path, String separator) throws IOException {
@@ -57,6 +66,22 @@ public class Database {
         br.close();
 
         //return importAmount;
+    }
+    
+    public Player findPlayer(TreeNode<Player> current, String name) {    	
+    	Player findPlayer = null;
+    	if (current!=null) {
+    		
+    		if (name.equals(current.getValue().getName())) {
+        		findPlayer = current.getValue();    		
+        		
+        	}else if (name.compareTo(current.getValue().getName())>0) {//Si es mayor
+        		return findPlayer(current.getRight(),name);
+        	}else if (name.compareTo(current.getValue().getName())<0){//Si es menor
+        		return findPlayer(current.getLeft(),name);
+        	}
+    	}    
+    	return findPlayer;    	
     }
     
     public BinaryTree<Player> getBinaryTreePlayers(){

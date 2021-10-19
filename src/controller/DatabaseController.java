@@ -81,6 +81,20 @@ public class DatabaseController implements Initializable {
     public DatabaseController(Database database) {
         this.database = database;
     }
+    
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        initializeTableView();
+        preventColumnReordering(tvPlayers);
+    }
+
+    public static <T> void preventColumnReordering(TableView<T> tableView) {
+        Platform.runLater(() -> {
+            for (Node header : tableView.lookupAll(".column-header")) {
+                header.addEventFilter(MouseEvent.MOUSE_DRAGGED, Event::consume);
+            }
+        });
+    }
 
     public void initializeTableView() {
     	//database.getPlayersInList().clear();
@@ -99,9 +113,38 @@ public class DatabaseController implements Initializable {
         tvPlayers.setItems(playersObservableList);
         lblPlayers.setText("Players: " + database.getPlayersInList().size());
         
-        //System.out.println("ArrayList en preorden: ");
-        //database.getBinaryTreePlayers().recorrerPreorden(database.getBinaryTreePlayers().getRoot());
-        //System.out.println("___________________");
+       
+         	tvPlayers.setRowFactory(tv -> {
+			TableRow<Player> row = new TableRow<>();
+			row.setOnMouseClicked(event -> {
+				if (event.getClickCount() == 2 && (!row.isEmpty())) {
+					Player player = row.getItem();
+					try {
+						FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/ui/scenes/editPlayer.fxml"));
+        				EditPlayerController controller = new EditPlayerController(this);
+        				fxmlLoader.setController(controller);
+        				Parent root = fxmlLoader.load();
+        				Stage stage = new Stage();
+        				Scene scene = new Scene(root);
+        				scene.getStylesheets().add("/ui/styles/newPlayer.css");
+        				stage.setTitle("Remove Player");
+        				stage.setResizable(false);
+        				stage.setScene(scene);
+        				stage.initStyle(StageStyle.TRANSPARENT);
+        				stage.initModality(Modality.APPLICATION_MODAL);
+        				modalOpaque.setVisible(true);
+        				stage.show();	
+        				
+        				controller.initializeWindow(player);
+						
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
+
+				}
+			});
+			return row;
+		});         
     }
     
     @FXML
@@ -132,7 +175,26 @@ public class DatabaseController implements Initializable {
         modalOpaque.setVisible(true);
         stage.show();
     }
-
+    
+    /*
+    @FXML
+    public void showDeletePlayer(ActionEvent event) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/ui/scenes/deletePlayer.fxml"));
+        RemovePlayerController controller = new RemovePlayerController(this);
+        fxmlLoader.setController(controller);
+        Parent root = fxmlLoader.load();
+        Stage stage = new Stage();
+        Scene scene = new Scene(root);
+        scene.getStylesheets().add("/ui/styles/newPlayer.css");
+        stage.setTitle("Remove Player");
+        stage.setResizable(false);
+        stage.setScene(scene);
+        stage.initStyle(StageStyle.TRANSPARENT);
+        stage.initModality(Modality.APPLICATION_MODAL);
+        modalOpaque.setVisible(true);
+        stage.show();
+    }
+     */
     @FXML
     public void searchPlayer() {
 
@@ -181,18 +243,5 @@ public class DatabaseController implements Initializable {
         return database;
     }
 
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        initializeTableView();
-        preventColumnReordering(tvPlayers);
-    }
-
-    public static <T> void preventColumnReordering(TableView<T> tableView) {
-        Platform.runLater(() -> {
-            for (Node header : tableView.lookupAll(".column-header")) {
-                header.addEventFilter(MouseEvent.MOUSE_DRAGGED, Event::consume);
-            }
-        });
-    }
 
 }
