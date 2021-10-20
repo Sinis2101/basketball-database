@@ -127,8 +127,7 @@ public class DatabaseController implements Initializable {
 
         tvPlayers.setItems(playersObservableList);
         lblPlayers.setText("Players: " + database.getPlayersInList().size());
-        
-       
+
          	tvPlayers.setRowFactory(tv -> {
 			TableRow<Player> row = new TableRow<>();
 			row.setOnMouseClicked(event -> {

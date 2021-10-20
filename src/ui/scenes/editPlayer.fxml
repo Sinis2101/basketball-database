@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="540.0" prefWidth="350.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="540.0" prefWidth="350.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <VBox prefHeight="540.0" prefWidth="350.0">
          <children>
@@ -27,16 +27,16 @@
                         <Insets bottom="10.0" />
                      </VBox.margin>
                   </Label>
-                  <Label text="Name *" />
-                  <TextField fx:id="txtName" maxWidth="200.0" onMouseClicked="#handleMouseClick" promptText="Full Name" />
-                  <Label layoutX="144.0" layoutY="222.0" text="Actual Team *" />
-                  <TextField fx:id="txtTeam" layoutX="60.0" layoutY="249.0" maxWidth="200.0" onMouseClicked="#handleMouseClick" promptText="Team's Name" />
-                  <Label layoutX="127.0" layoutY="253.0" text="Birthdate *" />
+                  <Label text="Name" />
+                  <TextField fx:id="txtName" focusTraversable="false" layoutX="85.0" layoutY="154.0" maxWidth="200.0" onMouseClicked="#handleMouseClick" promptText="Full Name" />
+                  <Label layoutX="144.0" layoutY="222.0" text="Actual Team" />
+                  <TextField fx:id="txtTeam" focusTraversable="false" layoutX="60.0" layoutY="249.0" maxWidth="200.0" onMouseClicked="#handleMouseClick" promptText="Team's Name" />
+                  <Label layoutX="127.0" layoutY="253.0" text="Birthdate" />
                   <HBox alignment="CENTER" maxWidth="200.0" prefWidth="200.0" spacing="10.0">
                      <children>
-                        <TextField fx:id="txtYear" alignment="CENTER" editable="false" maxWidth="200.0" onMouseClicked="#handleMouseClick" promptText="Year" />
-                        <TextField fx:id="txtMonth" alignment="CENTER" editable="false" layoutX="36.0" layoutY="10.0" maxWidth="200.0" onMouseClicked="#handleMouseClick" promptText="Month" />
-                        <TextField fx:id="txtDay" alignment="CENTER" editable="false" layoutX="115.0" layoutY="10.0" maxWidth="200.0" onMouseClicked="#handleMouseClick" promptText="Day" />
+                        <TextField fx:id="txtYear" alignment="CENTER" focusTraversable="false" maxWidth="200.0" onMouseClicked="#handleMouseClick" promptText="Year" />
+                        <TextField fx:id="txtMonth" alignment="CENTER" focusTraversable="false" layoutX="36.0" layoutY="10.0" maxWidth="200.0" onMouseClicked="#handleMouseClick" promptText="Month" />
+                        <TextField fx:id="txtDay" alignment="CENTER" focusTraversable="false" layoutX="115.0" layoutY="10.0" maxWidth="200.0" onMouseClicked="#handleMouseClick" promptText="Day" />
                      </children>
                   </HBox>
                   <Label layoutX="154.0" layoutY="59.0" styleClass="title" text="Stats Per Game">
@@ -49,13 +49,13 @@
                         <VBox alignment="CENTER" spacing="10.0">
                            <children>
                               <Label text="Points" />
-                              <TextField fx:id="txtPoints" alignment="CENTER" maxWidth="60.0" promptText="0.0" text="0.0" />
+                              <TextField fx:id="txtPoints" alignment="CENTER" focusTraversable="false" maxWidth="60.0" promptText="0.0" text="0.0" />
                            </children>
                         </VBox>
                         <VBox alignment="CENTER" layoutX="10.0" layoutY="10.0" spacing="10.0">
                            <children>
                               <Label text="Rebounds" />
-                              <TextField fx:id="txtRebounds" alignment="CENTER" maxWidth="60.0" promptText="0.0" text="0.0" />
+                              <TextField fx:id="txtRebounds" alignment="CENTER" focusTraversable="false" maxWidth="60.0" promptText="0.0" text="0.0" />
                            </children>
                         </VBox>
                      </children>
@@ -65,19 +65,19 @@
                         <VBox alignment="CENTER" spacing="10.0">
                            <children>
                               <Label text="Assists" />
-                              <TextField fx:id="txtAssists" alignment="CENTER" maxWidth="200.0" promptText="0.0" text="0.0" />
+                              <TextField fx:id="txtAssists" alignment="CENTER" focusTraversable="false" maxWidth="200.0" promptText="0.0" text="0.0" />
                            </children>
                         </VBox>
                         <VBox alignment="CENTER" layoutX="10.0" layoutY="10.0" spacing="10.0">
                            <children>
                               <Label text="Steals" />
-                              <TextField fx:id="txtSteals" alignment="CENTER" maxWidth="200.0" promptText="0.0" text="0.0" />
+                              <TextField fx:id="txtSteals" alignment="CENTER" focusTraversable="false" maxWidth="200.0" promptText="0.0" text="0.0" />
                            </children>
                         </VBox>
                         <VBox alignment="CENTER" layoutX="115.0" layoutY="10.0" spacing="10.0">
                            <children>
                               <Label text="Blocks" />
-                              <TextField fx:id="txtBlocks" alignment="CENTER" maxWidth="200.0" promptText="0.0" text="0.0" />
+                              <TextField fx:id="txtBlocks" alignment="CENTER" focusTraversable="false" maxWidth="200.0" promptText="0.0" text="0.0" />
                            </children>
                         </VBox>
                      </children>

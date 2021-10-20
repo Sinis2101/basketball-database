@@ -4,9 +4,9 @@ import java.time.Period;
 
 public class Player implements Comparable<Player>{
 
-    private final String name;
+    private String name;
     private String actualTeam;
-    private final LocalDate birthdate;
+    private LocalDate birthdate;
     private double pointsPerGame, reboundsPerGame, assistsPerGame, stealsPerGame, blocksPerGame;
 
     
@@ -59,9 +59,39 @@ public class Player implements Comparable<Player>{
     }
 
     // Setters
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setBirthdate(LocalDate birthdate) {
+        this.birthdate = birthdate;
+    }
+
     public void setActualTeam(String actualTeam) {
         this.actualTeam = actualTeam;
     }
+
+    public void setPointsPerGame(double pointsPerGame) {
+        this.pointsPerGame = pointsPerGame;
+    }
+
+    public void setReboundsPerGame(double reboundsPerGame) {
+        this.reboundsPerGame = reboundsPerGame;
+    }
+
+    public void setAssistsPerGame(double assistsPerGame) {
+        this.assistsPerGame = assistsPerGame;
+    }
+
+    public void setStealsPerGame(double stealsPerGame) {
+        this.stealsPerGame = stealsPerGame;
+    }
+
+    public void setBlocksPerGame(double blocksPerGame) {
+        this.blocksPerGame = blocksPerGame;
+    }
+    //
+
 	@Override
 	public int compareTo(Player o) {
 		return name.compareTo(o.getName());
@@ -70,5 +100,6 @@ public class Player implements Comparable<Player>{
 	public String toString() {
 		return "Name: " + name + ". Team: " + actualTeam;
 	}
+
 
 }

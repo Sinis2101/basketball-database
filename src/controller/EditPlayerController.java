@@ -1,5 +1,6 @@
 package controller;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -24,8 +25,7 @@ public class EditPlayerController {
     	database = databaseController.getDatabase();
     	this.databaseController = databaseController;
     }
-    
-    
+
     @FXML
     private TextField txtAssists;
 
@@ -55,8 +55,11 @@ public class EditPlayerController {
 
     @FXML
     private TextField txtYear;
-    
+
+    private Player player;
+
     public void initializeWindow(Player player) {
+        this.player = player;
     	txtName.setText(player.getName());
     	txtTeam.setText(player.getActualTeam());
     	txtYear.setText(Integer.toString(player.getBirthdate().getYear()));
@@ -66,13 +69,32 @@ public class EditPlayerController {
     	txtRebounds.setText(Double.toString(player.getReboundsPerGame()));
     	txtAssists.setText(Double.toString(player.getAssistsPerGame()));
     	txtSteals.setText(Double.toString(player.getStealsPerGame()));
-    	txtBlocks.setText(Double.toString(player.getBlocksPerGame())); 
+    	txtBlocks.setText(Double.toString(player.getBlocksPerGame()));
+        // Prompt text
+        txtName.setPromptText(player.getName());
+        txtTeam.setPromptText(player.getActualTeam());
+        txtYear.setPromptText(Integer.toString(player.getBirthdate().getYear()));
+        txtMonth.setPromptText(Integer.toString(player.getBirthdate().getMonthValue()));
+        txtDay.setPromptText(Integer.toString(player.getBirthdate().getDayOfMonth()));
+        txtPoints.setPromptText(Double.toString(player.getPointsPerGame()));
+        txtRebounds.setPromptText(Double.toString(player.getReboundsPerGame()));
+        txtAssists.setPromptText(Double.toString(player.getAssistsPerGame()));
+        txtSteals.setPromptText(Double.toString(player.getStealsPerGame()));
+        txtBlocks.setPromptText(Double.toString(player.getBlocksPerGame()));
     }
 
     @FXML
     void editPlayer(ActionEvent event) {
     	if (checkForm()) {
-    		System.out.println("Aquí me actualizo");
+            player.setName(txtName.getText());
+            player.setActualTeam(txtTeam.getText());
+            player.setBirthdate(LocalDate.of(Integer.parseInt(txtYear.getText()),Integer.parseInt(txtMonth.getText()),Integer.parseInt(txtDay.getText())));
+            player.setPointsPerGame(Double.parseDouble(txtPoints.getText()));
+            player.setReboundsPerGame(Double.parseDouble(txtRebounds.getText()));
+            player.setAssistsPerGame(Double.parseDouble(txtAssists.getText()));
+            player.setStealsPerGame(Double.parseDouble(txtSteals.getText()));
+            player.setBlocksPerGame(Double.parseDouble(txtBlocks.getText()));
+            goBack(null);
     		databaseController.initializeTableView();
     	}
     }
