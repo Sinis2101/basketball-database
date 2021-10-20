@@ -65,7 +65,7 @@ public class BinaryTree<T extends Comparable<T>> {
 	
 	public TreeNode<T> getTreeNode(TreeNode<T>current, T searchNode){
 		TreeNode<T> findNode = null;
-		if (searchNode == current.getValue()) {
+		if (searchNode.compareTo(current.getValue())==0) {
 			findNode = current;			
 			
 		}else if (searchNode.compareTo(current.getValue())<0) {//Si el valor del newNode es menor que el current

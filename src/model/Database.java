@@ -29,8 +29,8 @@ public class Database {
         playersInList.add(player);        
     }
     
-    public void deletePlayer(String player) {
-    	Player findPlayer = findPlayer(players.getRoot(), player);
+    public void deletePlayer(Player player) {    	
+    	Player findPlayer = players.getTreeNode(players.getRoot(), player).getValue();
     	if (findPlayer!=null) {    	
     		playersInList.remove(findPlayer);
         	players.deleteNode(players.getRoot(), findPlayer);
@@ -76,7 +76,7 @@ public class Database {
     	Player findPlayer = null;
     	
     	if (current!=null) {   		
-    		if (name.toLowerCase().equalsIgnoreCase(current.getValue().getName().toLowerCase())) {
+    		if (name.toLowerCase().compareTo(current.getValue().getName().toLowerCase())==0) {
         		findPlayer = current.getValue();    		
         		
         	}else if (name.toLowerCase().compareTo(current.getValue().getName().toLowerCase())>0) {//Si es mayor
