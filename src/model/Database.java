@@ -76,7 +76,7 @@ public class Database {
     	Player findPlayer = null;
     	if (current!=null) {
     		
-    		if (name.equals(current.getValue().getName())) {
+    		if (name.equalsIgnoreCase(current.getValue().getName())) {
         		findPlayer = current.getValue();    		
         		
         	}else if (name.compareTo(current.getValue().getName())>0) {//Si es mayor
@@ -96,4 +96,9 @@ public class Database {
         return playersInList;
     }
 
+	public BinaryTree<Player> getPlayers() {
+		return players;
+	}
+    
+    
 }

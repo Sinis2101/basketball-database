@@ -84,7 +84,7 @@ public class EditPlayerController {
     }
 
     @FXML
-    void editPlayer(ActionEvent event) {
+    public void editPlayer(ActionEvent event) {
     	if (checkForm()) {
             player.setName(txtName.getText());
             player.setActualTeam(txtTeam.getText());
@@ -99,16 +99,18 @@ public class EditPlayerController {
     	}
     }
     
-    @FXML
-    public void removePlayer(ActionEvent event) {
-    	if(!txtName.getText().isEmpty()) {//Si el nombre está
-
-    		database.deletePlayer(txtName.getText());    		
-    		goBack(null);
-    		databaseController.initializeTableView();
-    	}    	
+    private LocalDate checkDate() {
+        LocalDate tempBirthdate;
+        try {
+            int year = Integer.parseInt(txtYear.getText());
+            int month = Integer.parseInt(txtMonth.getText());
+            int day = Integer.parseInt(txtDay.getText());
+            tempBirthdate = LocalDate.of(year, month, day);
+        } catch (Exception e) {
+            return null;
+        }        
+        return tempBirthdate;
     }
-
     
     private boolean checkForm() {
         ArrayList<TextField> emptyFields = new ArrayList<>();
@@ -118,6 +120,11 @@ public class EditPlayerController {
         if(txtYear.getText().isEmpty()) emptyFields.add(txtYear);
         if(txtMonth.getText().isEmpty()) emptyFields.add(txtMonth);
         if(txtDay.getText().isEmpty()) emptyFields.add(txtDay);     
+        if(checkDate()==null) {
+            emptyFields.add(txtYear);
+            emptyFields.add(txtMonth);
+            emptyFields.add(txtDay);
+        }
 
         highlightEmptyFields(emptyFields);
 
@@ -129,6 +136,17 @@ public class EditPlayerController {
             field.setStyle("-fx-border-color: #ffa724;");
         }
     }
+    
+    @FXML
+    public void removePlayer(ActionEvent event) {
+    	if(!txtName.getText().isEmpty()) {//Si el textfield NO está vacío
+
+    		database.deletePlayer(txtName.getText());    		
+    		goBack(null);
+    		databaseController.initializeTableView();
+    	}    	
+    }   
+
 
     @FXML
     public void goBack(ActionEvent event) {//Cancel button

@@ -104,13 +104,6 @@ public class DatabaseController implements Initializable {
         });
     }
 
-    @FXML
-    void cleanSearch(ActionEvent event) {
-        txtSearch.setText("");
-        initializeTableView();
-        btnSearch.setVisible(false);
-    }
-
     public void initializeTableView() {
     	//database.getPlayersInList().clear();
     	//database.fromTreeToArrayList(database.getBinaryTreePlayers().getRoot());
@@ -162,7 +155,7 @@ public class DatabaseController implements Initializable {
     }
     
     @FXML
-    public void handleMouseClick(MouseEvent event) {
+    public void handleMouseClick(MouseEvent event) {//Para cerrar o minimizar la ventana main.fxml
         Stage stage = (Stage) btnMinimize.getScene().getWindow();
         if (event.getSource() == btnClose) {
             stage.close();
@@ -173,7 +166,7 @@ public class DatabaseController implements Initializable {
     }
 
     @FXML
-    public void showAddPlayer(ActionEvent event) throws IOException {
+    public void showAddPlayer(ActionEvent event) throws IOException {//Abre newPlayer.fxml
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/ui/scenes/newPlayer.fxml"));
         NewPlayerController controller = new NewPlayerController(this);
         fxmlLoader.setController(controller);
@@ -189,34 +182,16 @@ public class DatabaseController implements Initializable {
         modalOpaque.setVisible(true);
         stage.show();
     }
-    
-    /*
-    @FXML
-    public void showDeletePlayer(ActionEvent event) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/ui/scenes/deletePlayer.fxml"));
-        RemovePlayerController controller = new RemovePlayerController(this);
-        fxmlLoader.setController(controller);
-        Parent root = fxmlLoader.load();
-        Stage stage = new Stage();
-        Scene scene = new Scene(root);
-        scene.getStylesheets().add("/ui/styles/newPlayer.css");
-        stage.setTitle("Remove Player");
-        stage.setResizable(false);
-        stage.setScene(scene);
-        stage.initStyle(StageStyle.TRANSPARENT);
-        stage.initModality(Modality.APPLICATION_MODAL);
-        modalOpaque.setVisible(true);
-        stage.show();
-    }
-     */
+
     @FXML
     public void search() {
-        if(!txtSearch.getText().isEmpty()) {
+        if(!txtSearch.getText().isEmpty()) {//Si el textfield NO está vacío
             if (btnSearch.getText().equals("Search")) {
                 String originalSearch = txtSearch.getText();
 
                 long startTime = System.nanoTime();
                 Player searchResult = database.findPlayer(txtSearch.getText());
+                //Player searchResult = database.findPlayer(database.getPlayers().getRoot(),txtSearch.getText());
                 long endTime = System.nanoTime();
                 double searchTime = (double)((endTime-startTime))/1000000;
 
@@ -227,12 +202,13 @@ public class DatabaseController implements Initializable {
                     ObservableList<Player> clientsObservableList = FXCollections.observableList(tempList);
 
                     tvPlayers.setItems(clientsObservableList);
+                    
                     btnSearch.setText("Clean Search");
                     lblSearchResult.setText("Search time: " + searchTime + " ms.");
                 } else {
                     lblSearchResult.setText(originalSearch + " was not found in the database.");
                 }
-            } else {
+            } else {//Si el text es Clean Search
                 txtSearch.setText("");
                 btnSearch.setText("Search");
                 lblSearchResult.setText("");
@@ -242,7 +218,7 @@ public class DatabaseController implements Initializable {
     }
 
     @FXML
-    void handleKeyPress(KeyEvent event) {
+    public void handleKeyPress(KeyEvent event) {//Enter para buscar el jugador
         if(event.getCode().equals(KeyCode.ENTER)) {
             if(!txtSearch.getText().isEmpty()) {
                 search();
