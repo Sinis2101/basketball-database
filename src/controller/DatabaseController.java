@@ -34,7 +34,10 @@ import java.util.ResourceBundle;
 public class DatabaseController implements Initializable {
 
     @FXML
-    private Button btnSearch;
+    private Button btnSearch;    
+
+    @FXML
+    private Button btnSearchByCategory;
 
     @FXML
     private Button btnMinimize;
@@ -47,6 +50,21 @@ public class DatabaseController implements Initializable {
 
     @FXML
     private TextField txtSearch;
+    
+    @FXML
+    private TextField txtSearchByAssitss;
+
+    @FXML
+    private TextField txtSearchByBlocks;
+
+    @FXML
+    private TextField txtSearchByPoints;
+
+    @FXML
+    private TextField txtSearchByRebounds;
+
+    @FXML
+    private TextField txtSearchBySteals;
 
     @FXML
     private TableView<Player> tvPlayers;
@@ -224,6 +242,12 @@ public class DatabaseController implements Initializable {
                 search();
             }
         }
+    }
+    
+
+    @FXML
+    void searchByCategory(ActionEvent event) {
+
     }
 
     @FXML

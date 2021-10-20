@@ -75,10 +75,7 @@ public class Database {
     private Player findPlayer(TreeNode<Player> current, String name) {
     	Player findPlayer = null;
     	
-    	if (current!=null) {
-    		System.out.println("NAME:"+name+"-->Current name:"+current.getValue().getName());
-    		System.out.println("value --> "+name.compareTo(current.getValue().getName()));
-    		
+    	if (current!=null) {   		
     		if (name.toLowerCase().equalsIgnoreCase(current.getValue().getName().toLowerCase())) {
         		findPlayer = current.getValue();    		
         		
