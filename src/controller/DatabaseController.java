@@ -191,7 +191,7 @@ public class DatabaseController implements Initializable {
 
                 long startTime = System.nanoTime();
                 Player searchResult = database.findPlayer(txtSearch.getText());
-                //Player searchResult = database.findPlayer(database.getPlayers().getRoot(),txtSearch.getText());
+                //Player searchResult = database.findPlayer(database.getBinaryTreePlayers().getRoot(),txtSearch.getText());
                 long endTime = System.nanoTime();
                 double searchTime = (double)((endTime-startTime))/1000000;
 
@@ -235,7 +235,7 @@ public class DatabaseController implements Initializable {
         if (file != null) {
             database.importPlayers(file.getPath(), ",");
             initializeTableView();
-        }
+        }        
     }
 
     @FXML

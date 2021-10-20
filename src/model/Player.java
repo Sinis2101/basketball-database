@@ -94,6 +94,7 @@ public class Player implements Comparable<Player>{
 
 	@Override
 	public int compareTo(Player o) {
+		System.out.println("PRINT PLAYER: "+name+" vs "+o.getName());
 		return name.compareTo(o.getName());
 	}
 	

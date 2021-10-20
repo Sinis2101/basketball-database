@@ -68,20 +68,24 @@ public class Database {
         //return importAmount;
     }
 
-    public Player findPlayer(String name) {
-        return findPlayer(players.getRoot(), name);
+    public Player findPlayer(String player) {    
+    	return findPlayer(players.getRoot(), player); 
     }
 
     private Player findPlayer(TreeNode<Player> current, String name) {
     	Player findPlayer = null;
+    	
     	if (current!=null) {
+    		System.out.println("NAME:"+name+"-->Current name:"+current.getValue().getName());
+    		System.out.println("value --> "+name.compareTo(current.getValue().getName()));
     		
-    		if (name.equalsIgnoreCase(current.getValue().getName())) {
+    		if (name.toLowerCase().equalsIgnoreCase(current.getValue().getName().toLowerCase())) {
         		findPlayer = current.getValue();    		
         		
-        	}else if (name.compareTo(current.getValue().getName())>0) {//Si es mayor
+        	}else if (name.toLowerCase().compareTo(current.getValue().getName().toLowerCase())>0) {//Si es mayor
         		return findPlayer(current.getRight(),name);
-        	}else if (name.compareTo(current.getValue().getName())<0){//Si es menor
+        		
+        	}else if (name.toLowerCase().compareTo(current.getValue().getName().toLowerCase())<0){//Si es menor
         		return findPlayer(current.getLeft(),name);
         	}
     	}    
@@ -96,9 +100,6 @@ public class Database {
         return playersInList;
     }
 
-	public BinaryTree<Player> getPlayers() {
-		return players;
-	}
     
     
 }
