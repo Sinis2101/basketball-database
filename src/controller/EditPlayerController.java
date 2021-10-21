@@ -141,7 +141,7 @@ public class EditPlayerController {
     public void removePlayer(ActionEvent event) {
     	if(!txtName.getText().isEmpty()) {//Si el textfield NO está vacío
 
-    		database.deletePlayer(player);
+    		database.deletePlayer(player.getName());
     		goBack(null);
     		databaseController.initializeTableView();
     	}    	

@@ -29,8 +29,8 @@ public class Database {
         playersInList.add(player);        
     }
     
-    public void deletePlayer(Player player) {    	
-    	Player findPlayer = players.getTreeNode(players.getRoot(), player).getValue();
+    public void deletePlayer(String player) {    	
+    	Player findPlayer = findPlayer(players.getRoot(), player);
     	if (findPlayer!=null) {    	
     		playersInList.remove(findPlayer);
         	players.deleteNode(players.getRoot(), findPlayer);
