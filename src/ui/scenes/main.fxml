@@ -13,11 +13,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Rectangle?>
 
-<<<<<<< HEAD
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="578.0" prefWidth="960.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
-=======
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="540.0" prefWidth="960.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
->>>>>>> 2f6ff6e7b66286310345b369ed3379b14e480dc0
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="586.0" prefWidth="960.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <HBox alignment="CENTER_RIGHT" layoutX="480.0" layoutY="-1.0" onMouseDragged="#windowDragged" onMousePressed="#windowPressed" prefHeight="30.0" prefWidth="480.0" styleClass="top-bar">
          <children>
@@ -37,69 +33,31 @@
             <Insets left="10.0" />
          </padding>
       </HBox>
-<<<<<<< HEAD
-      <VBox layoutY="24.0" prefHeight="559.0" prefWidth="960.0" spacing="15.0">
+      <VBox layoutY="30.0" prefHeight="548.0" prefWidth="960.0" spacing="15.0">
          <children>
-            <VBox prefHeight="76.0" prefWidth="930.0">
-=======
-      <VBox layoutY="30.0" prefHeight="510.0" prefWidth="960.0" spacing="15.0">
-         <children>
-            <HBox alignment="CENTER_LEFT" layoutX="25.0" layoutY="480.0" spacing="15.0">
->>>>>>> 2f6ff6e7b66286310345b369ed3379b14e480dc0
+            <VBox prefHeight="81.0" prefWidth="930.0" spacing="10.0">
                <children>
-                  <Button mnemonicParsing="false" onAction="#showAddPlayer" prefHeight="25.0" prefWidth="86.0" styleClass="ui-button" text="Add Player" />
-                  <HBox alignment="CENTER_LEFT" prefHeight="25.0">
+                  <HBox alignment="CENTER_LEFT" prefHeight="25.0" prefWidth="952.0" spacing="15.0">
                      <children>
-<<<<<<< HEAD
-                        <Button mnemonicParsing="false" onAction="#showAddPlayer" prefHeight="25.0" prefWidth="86.0" styleClass="ui-button" text="Add Player" />
-                        <HBox prefHeight="25.0" prefWidth="666.0">
+                        <Button mnemonicParsing="false" onAction="#showAddPlayer" styleClass="ui-button" text="Add Player" />
+                        <HBox prefHeight="25.0" prefWidth="427.0" spacing="15.0">
                            <children>
                               <TextField fx:id="txtSearch" onKeyPressed="#handleKeyPress" prefWidth="300.0" promptText="Search Player" />
-                              <Button fx:id="btnSearch" mnemonicParsing="false" onAction="#search" prefWidth="100.0" styleClass="ui-button" text="Search">
-                                 <HBox.margin>
-                                    <Insets left="10.0" />
-                                 </HBox.margin>
-                              </Button>
-                              <Label fx:id="lblSearchResult" styleClass="label-result">
-                                 <HBox.margin>
-                                    <Insets left="10.0" />
-                                 </HBox.margin>
-                              </Label>
+                              <Button fx:id="btnSearch" mnemonicParsing="false" onAction="#search" prefWidth="100.0" styleClass="ui-button" text="Search" />
                            </children>
                         </HBox>
+                        <Label fx:id="lblSearchResult" styleClass="label-result" />
                      </children>
                   </HBox>
-                  <HBox prefHeight="32.0" prefWidth="930.0" spacing="15.0">
+                  <HBox prefHeight="100.0" prefWidth="200.0" spacing="15.0">
                      <children>
-                        <ComboBox fx:id="comboBoxCategory" prefWidth="150.0" promptText="Select a category">
-                           <HBox.margin>
-                              <Insets />
-                           </HBox.margin>
-                        </ComboBox>
-                        <TextField fx:id="txtSearchCategory" onKeyPressed="#handleKeyPressCategory" prefHeight="25.0" prefWidth="232.0" promptText="&gt;number1;&lt;number2" />
-                        <Button fx:id="btnSearchCategory" mnemonicParsing="false" onAction="#searchByCategory" styleClass="ui-button" text="Search by Categogry" />
+                        <ComboBox fx:id="comboBoxCategory" prefWidth="150.0" promptText="Select a category" />
+                        <TextField fx:id="txtSearchCategory" onKeyPressed="#handleKeyPressCategory" prefHeight="25.0" prefWidth="244.0" promptText="&gt;number1;&lt;number2" />
+                        <Button fx:id="btnSearchCategory" mnemonicParsing="false" onAction="#searchByCategory" styleClass="ui-button" text="Search by Category" />
                      </children>
-                     <VBox.margin>
-                        <Insets top="15.0" />
-                     </VBox.margin>
-=======
-                        <TextField fx:id="txtSearch" onKeyPressed="#handleKeyPress" prefWidth="300.0" promptText="Search Player" />
-                        <Button fx:id="btnSearch" mnemonicParsing="false" onAction="#search" prefWidth="100.0" styleClass="ui-button" text="Search" />
-                        <Button fx:id="btnSearch1" mnemonicParsing="false" onAction="#search" prefWidth="125.0" styleClass="ui-button" text="Advanced Search">
-                           <HBox.margin>
-                              <Insets left="15.0" />
-                           </HBox.margin>
-                        </Button>
-                        <Label fx:id="lblSearchResult" text="Test">
-                           <HBox.margin>
-                              <Insets left="15.0" />
-                           </HBox.margin>
-                        </Label>
-                     </children>
->>>>>>> 2f6ff6e7b66286310345b369ed3379b14e480dc0
                   </HBox>
                </children>
-            </HBox>
+            </VBox>
             <TableView fx:id="tvPlayers" maxHeight="400.0" maxWidth="930.0" minHeight="400.0" minWidth="930.0" prefHeight="400.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
                 <placeholder>
                     <Label text="Database is empty." />

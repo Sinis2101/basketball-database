@@ -117,9 +117,10 @@ public class DatabaseController implements Initializable {
     }
 
     public void initializeTableView() {
-        txtSearch.setText("");
+	txtSearch.setText("");
         lblSearchResult.setText("");
         btnSearch.setText("Search");
+
     	//database.getPlayersInList().clear();
     	//database.fromTreeToArrayList(database.getBinaryTreePlayers().getRoot());
         ObservableList<Player> playersObservableList = FXCollections.observableList(database.getPlayersInList());
@@ -236,9 +237,11 @@ public class DatabaseController implements Initializable {
     @FXML
     public void searchByCategory() {
     	if  (!txtSearchCategory.getText().isEmpty()) {
-    		if (btnSearchCategory.getText().equals("Search by Categogry")) {
+    		if (btnSearchCategory.getText().equals("Search by Category")) {
     			
-    			if (comboBoxCategory.getValue()!=null) {
+    			if (comboBoxCategory.getSelectionModel().isEmpty()==false) {
+    				
+    				
     				switch (comboBoxCategory.getSelectionModel().getSelectedItem()) {
     				case "Points per game":
     					waysOfSearch("Points per game");
@@ -256,17 +259,15 @@ public class DatabaseController implements Initializable {
     					waysOfSearch("Steals per game");
     					break;   						
     				} 
+    				
     			}else {
     				lblSearchResult.setText("Select a category");
-    			}
-    				
-    			    			
-    		   			
+    			}    		   			
     			
     		}else {
     			txtSearchCategory.setText("");
     			comboBoxCategory.getSelectionModel().clearSelection();
-    			btnSearchCategory.setText("Search by Categogry");
+    			btnSearchCategory.setText("Search by Category");
     			lblSearchResult.setText("");
     			initializeTableView();    			
     		}
