@@ -240,6 +240,42 @@ public class Database {
         	}
     	}   
     }
+    
+    public Player findPlayerByCategory(String category, String info) {
+      	Player findPlayer = null;
+    	if (category.equals("Points per game")) {
+    		findPlayer = findPlayerByCategory(playersByPoints.getRoot(), Double.parseDouble(info));
+    		
+    	}else if (category.equals("Rebounds per game")) {
+    		findPlayer = findPlayerByCategory(playersByRebounds.getRoot(), Double.parseDouble(info));
+    		
+    	}else if (category.equals("Assists per game")) {
+    		findPlayer = findPlayerByCategory(playersByAssists.getRoot(), Double.parseDouble(info));
+    		
+    	}else if (category.equals("Steals per game")) {
+    		findPlayer = findPlayerByCategory(playersBySteals.getRoot(), Double.parseDouble(info));
+    		
+    	} 	
+    	    	
+    	return findPlayer;
+    }
+    
+    private Player findPlayerByCategory(TreeNode<Category> current, double value) {    	
+    	Player findPlayer = null;
+    	if (current!=null) {
+    		if (value == current.getValue().getValue()) {
+    			findPlayer = current.getValue().getPlayer(); 
+    			
+    		}else if (value > current.getValue().getValue()) {
+    			return findPlayerByCategory(current.getRight(),value);
+    			
+    		}else if (value < current.getValue().getValue()) {
+    			return findPlayerByCategory(current.getLeft(),value);
+    		}
+    	}
+    	
+    	return findPlayer;   
+    }
         
     public BinaryTree<Player> getBinaryTreePlayers(){
     	return players;

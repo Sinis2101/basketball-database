@@ -297,6 +297,11 @@ public class DatabaseController implements Initializable {
 			startTime = System.nanoTime();			
 			tempList = database.findSmallerThan(category, txtSearchCategory.getText());
 			endTime = System.nanoTime();	
+		}else {
+			startTime = System.nanoTime();	
+			tempList.add(database.findPlayerByCategory(category, txtSearchCategory.getText()));
+			endTime = System.nanoTime();	
+			
 		}
     	
     	double searchTime = (double)((endTime-startTime))/1000000;
