@@ -123,6 +123,9 @@ public class DatabaseController implements Initializable {
     }
 
     public void initializeTableView() {
+        txtSearch.setText("");
+        lblSearchResult.setText("");
+        btnSearch.setText("Search");
     	//database.getPlayersInList().clear();
     	//database.fromTreeToArrayList(database.getBinaryTreePlayers().getRoot());
         ObservableList<Player> playersObservableList = FXCollections.observableList(database.getPlayersInList());
