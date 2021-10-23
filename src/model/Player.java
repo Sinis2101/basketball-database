@@ -96,7 +96,7 @@ public class Player implements Comparable<Player>{
 	public int compareTo(Player o) {	
 		return name.toLowerCase().compareTo(o.getName().toLowerCase());
 	}
-	
+		
 	public String toString() {
 		return "Name: " + name + ". Team: " + actualTeam;
 	}

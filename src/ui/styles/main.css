@@ -140,6 +140,14 @@
     -fx-border-color: #16161c;
 }
 
+.combo-box-base {
+    -fx-background-radius: 0 0 0 0;
+    -fx-text-fill: #ffa724;
+    -fx-background-color: #0d0d11;
+    -fx-border-color: #ffa724;
+
+}
+
 .search-button {
     -fx-background-color: #16161c;
     -fx-border-color: none;

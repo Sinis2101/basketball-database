@@ -35,10 +35,10 @@ public class DatabaseController implements Initializable {
 
     @FXML
     private Button btnSearch;    
-
+    
     @FXML
-    private Button btnSearchByCategory;
-
+    private Button btnSearchCategory;
+    
     @FXML
     private Button btnMinimize;
 
@@ -46,25 +46,16 @@ public class DatabaseController implements Initializable {
     private Button btnClose;
 
     @FXML
+    private ComboBox<String> comboBoxCategory;
+    
+    @FXML
     private Rectangle modalOpaque;
 
     @FXML
     private TextField txtSearch;
     
     @FXML
-    private TextField txtSearchByAssitss;
-
-    @FXML
-    private TextField txtSearchByBlocks;
-
-    @FXML
-    private TextField txtSearchByPoints;
-
-    @FXML
-    private TextField txtSearchByRebounds;
-
-    @FXML
-    private TextField txtSearchBySteals;
+    private TextField txtSearchCategory;
 
     @FXML
     private TableView<Player> tvPlayers;
@@ -110,6 +101,9 @@ public class DatabaseController implements Initializable {
     
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+    	ObservableList<String> categories = FXCollections.observableArrayList("Points per game",
+    			"Rebounds per Game","Assists per game","Steals per game");   	
+    	comboBoxCategory.setItems(categories);   	
         initializeTableView();
         preventColumnReordering(tvPlayers);
     }
@@ -138,7 +132,8 @@ public class DatabaseController implements Initializable {
 
         tvPlayers.setItems(playersObservableList);
         lblPlayers.setText("Players: " + database.getPlayersInList().size());
-
+        database.createTreesToSearchByCategory();
+        
          	tvPlayers.setRowFactory(tv -> {
 			TableRow<Player> row = new TableRow<>();
 			row.setOnMouseClicked(event -> {
@@ -234,6 +229,86 @@ public class DatabaseController implements Initializable {
             }
         }
     }
+    
+    @FXML
+    public void searchByCategory() {
+    	if  (!txtSearchCategory.getText().isEmpty()) {
+    		if (btnSearchCategory.getText().equals("Search by Categogry")) {
+    			
+    			if (comboBoxCategory.getValue()!=null) {
+    				switch (comboBoxCategory.getSelectionModel().getSelectedItem()) {
+    				case "Points per game":
+    					waysOfSearch("Points per game");
+    					break;
+
+    				case "Rebounds per Game":
+    					waysOfSearch("Rebounds per game");
+    					break;
+
+    				case "Assists per game":
+    					waysOfSearch("Assists per game");
+    					break;
+
+    				case "Steals per game":
+    					waysOfSearch("Steals per game");
+    					break;   						
+    				} 
+    			}else {
+    				lblSearchResult.setText("Select a category");
+    			}
+    				
+    			    			
+    		   			
+    			
+    		}else {
+    			txtSearchCategory.setText("");
+    			comboBoxCategory.getSelectionModel().clearSelection();
+    			btnSearchCategory.setText("Search by Categogry");
+    			lblSearchResult.setText("");
+    			initializeTableView();    			
+    		}
+    		
+    		
+    	}
+
+    }
+    
+    private void waysOfSearch(String category) {
+    	ArrayList<Player> tempList = new ArrayList<>();
+    	long startTime = 0;
+    	long endTime = 0;
+    	
+    	if (txtSearchCategory.getText().contains(";")){//Entonces se va a buscar por rango
+			
+			startTime = System.nanoTime();
+			//tempList = database.findPlayerByRank(category, txtSearchCategory.getText());
+			endTime = System.nanoTime();	
+			
+		}else if (txtSearchCategory.getText().contains(">")) {//Se buscara los que sean mayor a
+			startTime = System.nanoTime();
+			tempList = database.findBiggerThan(category, txtSearchCategory.getText());
+			endTime = System.nanoTime();					
+			 
+		}else if (txtSearchCategory.getText().contains("<")) {//Se buscaraa los que sean menor a
+			startTime = System.nanoTime();			
+			tempList = database.findSmallerThan(category, txtSearchCategory.getText());
+			endTime = System.nanoTime();	
+		}
+    	
+    	double searchTime = (double)((endTime-startTime))/1000000;
+    	
+    	if (tempList!=null) {
+    		
+    		ObservableList<Player> playersObservableList = FXCollections.observableList(tempList);    		
+    		tvPlayers.setItems(playersObservableList);
+    		btnSearchCategory.setText("Clean Search");    		
+    		lblSearchResult.setText("Search by Category time: " + searchTime + " ms.");    		
+    		lblPlayers.setText("Players: " + tempList.size());
+    	}
+    	
+    	
+    }
+
 
     @FXML
     public void handleKeyPress(KeyEvent event) {//Enter para buscar el jugador
@@ -245,10 +320,16 @@ public class DatabaseController implements Initializable {
     }
     
 
-    @FXML
-    void searchByCategory(ActionEvent event) {
 
+    @FXML
+    public void handleKeyPressCategory(KeyEvent event) {
+        if(event.getCode().equals(KeyCode.ENTER)) {
+            if(!txtSearchCategory.getText().isEmpty()) {
+                searchByCategory();
+            }
+        }
     }
+
 
     @FXML
     public void importPlayers(ActionEvent event) throws IOException {
