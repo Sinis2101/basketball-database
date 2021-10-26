@@ -288,10 +288,10 @@ public class DatabaseController implements Initializable {
     	long startTime = 0;
     	long endTime = 0;
     	
-    	if (txtSearchCategory.getText().contains(";")){//Entonces se va a buscar por rango
-			
-			startTime = System.nanoTime();
-			//tempList = database.findPlayerByRank(category, txtSearchCategory.getText());
+    	if (txtSearchCategory.getText().contains(";")){//Entonces se va a buscar por rango			
+			System.out.println(";");
+    		startTime = System.nanoTime();
+			tempList = database.findPlayerByRank(category, txtSearchCategory.getText());
 			endTime = System.nanoTime();	
 			
 		}else if (txtSearchCategory.getText().contains(">")) {//Se buscara los que sean mayor a

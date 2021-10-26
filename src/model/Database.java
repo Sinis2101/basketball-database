@@ -132,49 +132,72 @@ public class Database {
     	}    
     	return findPlayer;    	
     }
-    /*
+    
+    public ArrayList<Player> tempRankList = new ArrayList<>();
+    public ArrayList<Player> tempBiggerList = new ArrayList<>();
+    public ArrayList<Player> tempSmallerList = new ArrayList<>();
+    
     
     public ArrayList<Player> findPlayerByRank(String category, String info){
+    	tempRankList.clear();
     	String [] temp = info.split(";");
-    	double start = Double.parseDouble(temp[0].substring(1, temp[0].length()));
-    	double end = Double.parseDouble(temp[1].substring(1, temp[1].length()));
-    	ArrayList<Player> tempList = new ArrayList<>();
+    	String start = temp[0];
+    	String end = temp[1];
     	
-    	if (category.equals("Points per game")) {
-    	
-    		
-    	}else if (category.equals("Rebounds per game")) {
-    		
-    	}else if (category.equals("Assists per Game")) {
-    		
-    	}else if (category.equals("Steals per game")) {
-    		
-    	}
-    	
+    	//System.out.println("start "+start);
+    	//System.out.println("end "+end);
     	    	
-    	return tempList;
+    	tempRankList = findBiggerThan(category, start);    	
+    	
+    	//System.out.println("tempRankList size: "+tempRankList.size());
+    	
+    	findPlayerByRank(category, tempRankList,end); 
+    	
+    	//System.out.println("tempRankList size: "+tempRankList.size());
+    	    	
+    	return tempRankList;
    
     }
     
     
-    private ArrayList<Player> findPlayerByRank(BinaryTree<Category> players, TreeNode<Double> value,double start, double end){
-    	ArrayList<Player> tempList = new ArrayList<>();
-    	if (start>players.getRoot().getValue().getValue()) {
-    		TreeNode<Category> current = players.getRoot().getRight();
-    		while (current!=null && current.getValue().getValue()>=start && current.getValue().getValue()<=end){
-    			tempList.add(current.getValue().getPlayer());
-    			
-    			
-    			
-    		}
-    	}
+    private void findPlayerByRank(String category,ArrayList<Player> list,String end){
+    	double finalRank = Double.parseDouble(end.substring(1,end.length()));
+      	
+    	if (category.equals("Points per game")) {
+    		for (int i=0;i<list.size();i++) {
+        		if (list.get(i).getPointsPerGame()>finalRank) {
+        			tempRankList.remove(i);        			
+        		}
+        	}
+    		
+    	}else if (category.equals("Rebounds per game")) {
+    		for (int i=0;i<list.size();i++) {
+        		if (list.get(i).getReboundsPerGame()>finalRank) {
+        			tempRankList.remove(i);
+        		}
+        	}
+    		
+    	}else if (category.equals("Assists per game")) {
+    		for (int i=0;i<list.size();i++) {
+        		if (list.get(i).getAssistsPerGame()>finalRank) {
+        			tempRankList.remove(i);
+        		}
+        	}
     	
-    	return tempList;    	
+    		
+    	}else if (category.equals("Steals per game")) {
+    		for (int i=0;i<list.size();i++) {
+        		if (list.get(i).getStealsPerGame()>finalRank) {
+        			tempRankList.remove(i);
+        		}
+        	}
+    		
+    	}    	
+  	
     }
-    */
     
-    public ArrayList<Player> tempBiggerList = new ArrayList<>();
-    public ArrayList<Player> tempSmallerList = new ArrayList<>();
+    
+
     
     public ArrayList<Player> findBiggerThan(String category, String info) {    	
     	tempBiggerList.clear();
