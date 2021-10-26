@@ -1,5 +1,8 @@
 package controller;
 
+import model.Database;
+import model.Player;
+
 import java.time.LocalDate;
 import java.util.ArrayList;
 import javafx.event.ActionEvent;
@@ -7,8 +10,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
-import model.Database;
-import model.Player;
+
 
 public class EditPlayerController {
 	

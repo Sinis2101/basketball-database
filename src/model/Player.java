@@ -1,4 +1,5 @@
 package model;
+
 import java.time.LocalDate;
 import java.time.Period;
 
@@ -97,6 +98,7 @@ public class Player implements Comparable<Player>{
 		return name.toLowerCase().compareTo(o.getName().toLowerCase());
 	}
 		
+	@Override
 	public String toString() {
 		return "Name: " + name + ". Team: " + actualTeam;
 	}

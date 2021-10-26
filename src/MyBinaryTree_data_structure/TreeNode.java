@@ -41,6 +41,7 @@ public class TreeNode<T extends Comparable<T>> {
 		return left;
 	}	
 	
+	@Override
 	public String toString() {
 		return "Padre: "+value+" --> hijo izquierdo: "+left.getValue()+" --> hijo derecho: "+right.getValue();
 	}
