@@ -133,6 +133,22 @@ public class Database {
     	return findPlayer;    	
     }
     
+    public ArrayList<Player> findPlayersByTeam(String team){
+    	return findPlayersByTeam(playersInList, team);    	
+    }
+    
+    private ArrayList<Player> findPlayersByTeam(ArrayList<Player> list, String team){
+    	ArrayList<Player> listPlayers = new ArrayList<>();
+    	
+    	for (int i=0;i<list.size();i++) {
+    		if (list.get(i).getActualTeam().equalsIgnoreCase(team)) {
+    			listPlayers.add(list.get(i));
+    		}
+    	}
+    	
+    	return listPlayers;
+    }
+    
     public ArrayList<Player> tempRankList = new ArrayList<>();
     public ArrayList<Player> tempBiggerList = new ArrayList<>();
     public ArrayList<Player> tempSmallerList = new ArrayList<>();

@@ -107,7 +107,7 @@ public class DatabaseController implements Initializable {
     
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-    	ObservableList<String> categories = FXCollections.observableArrayList("Points per game",
+    	ObservableList<String> categories = FXCollections.observableArrayList("Actual Team","Points per game",
     			"Rebounds per Game","Assists per game","Steals per game");   	
     	comboBoxCategory.setItems(categories);   	
         initializeTableView();
@@ -249,6 +249,10 @@ public class DatabaseController implements Initializable {
     				
     				
     				switch (comboBoxCategory.getSelectionModel().getSelectedItem()) {
+    				
+    				case "Actual Team":
+    					waysOfSearch("Actual Team");
+    					break;
     				case "Points per game":
     					waysOfSearch("Points per game");
     					break;
@@ -288,27 +292,38 @@ public class DatabaseController implements Initializable {
     	long startTime = 0;
     	long endTime = 0;
     	
-    	if (txtSearchCategory.getText().contains(";")){//Entonces se va a buscar por rango			
-			System.out.println(";");
+    	if (category.equals("Actual Team")) {
     		startTime = System.nanoTime();
-			tempList = database.findPlayerByRank(category, txtSearchCategory.getText());
-			endTime = System.nanoTime();	
-			
-		}else if (txtSearchCategory.getText().contains(">")) {//Se buscara los que sean mayor a
-			startTime = System.nanoTime();
-			tempList = database.findBiggerThan(category, txtSearchCategory.getText());
-			endTime = System.nanoTime();					
-			 
-		}else if (txtSearchCategory.getText().contains("<")) {//Se buscaraa los que sean menor a
-			startTime = System.nanoTime();			
-			tempList = database.findSmallerThan(category, txtSearchCategory.getText());
-			endTime = System.nanoTime();	
-		}else {
-			startTime = System.nanoTime();	
-			tempList.add(database.findPlayerByCategory(category, txtSearchCategory.getText()));
-			endTime = System.nanoTime();	
-			
-		}
+    		tempList = database.findPlayersByTeam(txtSearchCategory.getText());
+    		endTime = System.nanoTime();	
+    		
+    		
+    	}else {
+    		
+    		if (txtSearchCategory.getText().contains(";")){//Entonces se va a buscar por rango			
+    			System.out.println(";");
+        		startTime = System.nanoTime();
+    			tempList = database.findPlayerByRank(category, txtSearchCategory.getText());
+    			endTime = System.nanoTime();	
+    			
+    		}else if (txtSearchCategory.getText().contains(">")) {//Se buscara los que sean mayor a
+    			startTime = System.nanoTime();
+    			tempList = database.findBiggerThan(category, txtSearchCategory.getText());
+    			endTime = System.nanoTime();					
+    			 
+    		}else if (txtSearchCategory.getText().contains("<")) {//Se buscaraa los que sean menor a
+    			startTime = System.nanoTime();			
+    			tempList = database.findSmallerThan(category, txtSearchCategory.getText());
+    			endTime = System.nanoTime();	
+    		}else {
+    			startTime = System.nanoTime();	
+    			tempList.add(database.findPlayerByCategory(category, txtSearchCategory.getText()));
+    			endTime = System.nanoTime();	
+    			
+    		}
+    	}
+    	
+    
     	
     	double searchTime = (double)((endTime-startTime))/1000000;
     	
