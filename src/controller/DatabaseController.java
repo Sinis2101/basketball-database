@@ -18,13 +18,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableRow;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
@@ -102,11 +96,15 @@ public class DatabaseController implements Initializable {
     private double yOffset = 0;
 
     public DatabaseController(Database database) {
+
         this.database = database;
     }
     
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        Tooltip rangeTooltip = new Tooltip(); //Tooltip with examples on how to search by categories.
+        rangeTooltip.setText("Exact value: 5" + "\n" + "More than: >3" + "\n" + "Less than: <6" + "\n" + "Between: >3;<6");
+        txtSearchCategory.setTooltip(rangeTooltip);
     	ObservableList<String> categories = FXCollections.observableArrayList("Actual Team","Points per game",
     			"Rebounds per Game","Assists per game","Steals per game");   	
     	comboBoxCategory.setItems(categories);   	
@@ -123,7 +121,13 @@ public class DatabaseController implements Initializable {
     }
 
     public void initializeTableView() {
-	txtSearch.setText("");
+        if(!database.getPlayersInList().isEmpty()) { //Tooltip with tableview usage.
+            Tooltip tableViewTooltip = new Tooltip();
+            tableViewTooltip.setText("Double click a player to edit it.");
+            tvPlayers.setTooltip(tableViewTooltip);
+        }
+
+	    txtSearch.setText("");
         lblSearchResult.setText("");
         btnSearch.setText("Search");
 
