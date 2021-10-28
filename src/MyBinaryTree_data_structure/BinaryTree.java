@@ -123,19 +123,5 @@ public class BinaryTree<T extends Comparable<T>> {
         }
         return root.getValue();
     }
-    
-    /*
-    public void visit (TreeNode<T> raiz){
-        System.out.println(raiz.getValue().toString() + ";");
-    }
-    
-    public void recorrerPreorden(TreeNode <T> nodo){
-        if (nodo != null){
-        	visit (nodo);
-            recorrerPreorden(nodo.getLeft());
-            recorrerPreorden(nodo.getRight());
-        }
-    }
-    */
 	
 }
