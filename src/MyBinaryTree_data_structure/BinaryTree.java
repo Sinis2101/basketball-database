@@ -124,6 +124,7 @@ public class BinaryTree<T extends Comparable<T>> {
         return root.getValue();
     }
     
+    /*
     public void visit (TreeNode<T> raiz){
         System.out.println(raiz.getValue().toString() + ";");
     }
@@ -135,12 +136,6 @@ public class BinaryTree<T extends Comparable<T>> {
             recorrerPreorden(nodo.getRight());
         }
     }
-    
-    
-	 
-	
-	
-	
-	
+    */
 	
 }
