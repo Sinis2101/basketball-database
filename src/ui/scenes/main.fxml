@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Rectangle?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="586.0" prefWidth="960.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="540.0" prefWidth="960.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <HBox alignment="CENTER_RIGHT" layoutX="480.0" layoutY="-1.0" onMouseDragged="#windowDragged" onMousePressed="#windowPressed" prefHeight="30.0" prefWidth="480.0" styleClass="top-bar">
          <children>
@@ -33,31 +33,25 @@
             <Insets left="10.0" />
          </padding>
       </HBox>
-      <VBox layoutY="30.0" prefHeight="548.0" prefWidth="960.0" spacing="15.0">
+      <VBox layoutY="30.0" prefHeight="510.0" prefWidth="960.0" spacing="15.0">
          <children>
-            <VBox prefHeight="81.0" prefWidth="930.0" spacing="10.0">
+            <HBox alignment="CENTER_LEFT" prefHeight="25.0" prefWidth="952.0" spacing="15.0">
                <children>
-                  <HBox alignment="CENTER_LEFT" prefHeight="25.0" prefWidth="952.0" spacing="15.0">
+                  <HBox prefHeight="25.0">
                      <children>
-                        <Button mnemonicParsing="false" onAction="#showAddPlayer" styleClass="ui-button" text="Add Player" />
-                        <HBox prefHeight="25.0" prefWidth="427.0" spacing="15.0">
-                           <children>
-                              <TextField fx:id="txtSearch" onKeyPressed="#handleKeyPress" prefWidth="300.0" promptText="Search Player" />
-                              <Button fx:id="btnSearch" mnemonicParsing="false" onAction="#search" prefWidth="100.0" styleClass="ui-button" text="Search" />
-                           </children>
-                        </HBox>
-                        <Label fx:id="lblSearchResult" styleClass="label-result" />
+                        <TextField fx:id="txtSearch" onKeyPressed="#handleKeyPress" prefWidth="250.0" promptText="Player Name" />
+                        <Button fx:id="btnSearch" mnemonicParsing="false" onAction="#search" prefWidth="100.0" styleClass="ui-button" text="Search" />
                      </children>
                   </HBox>
-                  <HBox prefHeight="100.0" prefWidth="200.0" spacing="15.0">
+                  <HBox layoutX="99.0" layoutY="10.0" prefHeight="25.0">
                      <children>
-                        <ComboBox fx:id="comboBoxCategory" prefWidth="150.0" promptText="Select a category" />
-                        <TextField fx:id="txtSearchCategory" onKeyPressed="#handleKeyPressCategory" prefHeight="25.0" prefWidth="244.0" promptText="&gt;number1;&lt;number2" />
-                        <Button fx:id="btnSearchCategory" mnemonicParsing="false" onAction="#searchByCategory" styleClass="ui-button" text="Search by Category" />
+                        <ComboBox fx:id="comboBoxCategory" promptText="Category" />
+                        <TextField fx:id="txtSearchCategory" alignment="CENTER" onKeyPressed="#handleKeyPressCategory" prefWidth="150.0" promptText="Value or Range [&gt;x;&lt;y]" />
+                        <Button fx:id="btnSearchCategory" mnemonicParsing="false" onAction="#searchByCategory" prefWidth="150.0" styleClass="ui-button" text="Search by category" />
                      </children>
                   </HBox>
                </children>
-            </VBox>
+            </HBox>
             <TableView fx:id="tvPlayers" maxHeight="400.0" maxWidth="930.0" minHeight="400.0" minWidth="930.0" prefHeight="400.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
                 <placeholder>
                     <Label text="Database is empty." />
@@ -76,10 +70,12 @@
                   <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                </columnResizePolicy>
             </TableView>
-            <HBox alignment="CENTER_LEFT" spacing="15.0">
+            <HBox alignment="CENTER_LEFT" prefHeight="25.0" prefWidth="447.0" spacing="15.0">
                <children>
+                  <Button mnemonicParsing="false" onAction="#showAddPlayer" prefWidth="100.0" styleClass="ui-button" text="Add Player" />
                   <Button mnemonicParsing="false" onAction="#importPlayers" styleClass="ui-button" text="Import Players" />
                   <Label fx:id="lblPlayers" text="Players: 0" />
+                  <Label fx:id="lblSearchResult" styleClass="label-result" />
                </children>
             </HBox>
          </children>

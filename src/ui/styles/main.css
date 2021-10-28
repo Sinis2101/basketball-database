@@ -161,3 +161,21 @@
 .label-result {
     -fx-text-fill: #ffa724;
 }
+
+.combo-box .list-cell {
+    -fx-text-background-color: #ffffff;
+    -fx-background-color: transparent;
+}
+
+.combo-box .list-cell:hover {
+    -fx-background-color: #16161c;
+    -fx-text-background-color: #ffa724;
+}
+
+.combo-box .list-view {
+    -fx-background-color: #0d0d11;
+}
+
+.combo-box .cell:selected {
+    -fx-text-fill: white;
+}
