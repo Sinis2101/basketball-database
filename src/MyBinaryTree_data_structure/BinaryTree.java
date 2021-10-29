@@ -43,6 +43,12 @@ public class BinaryTree<T extends Comparable<T>> {
 			}else {
 				insertNode(current.getRight(),newNode);
 			}			
+		}else if (newNode.getValue().compareTo(current.getValue())==0) {//Si son valores iguales			
+			if (current.getRight() == null) {//Si no hay right
+				current.setRight(newNode);
+			}else {
+				insertNode(current.getRight(),newNode);
+			}
 		}
 	}
 	

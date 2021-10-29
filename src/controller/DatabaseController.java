@@ -1,5 +1,6 @@
 package controller;
 
+
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
@@ -94,11 +95,6 @@ public class DatabaseController implements Initializable {
 
     private double xOffset = 0;
     private double yOffset = 0;
-
-    public DatabaseController(Database database) {
-
-        this.database = database;
-    }
     
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -111,6 +107,13 @@ public class DatabaseController implements Initializable {
         initializeTableView();
         preventColumnReordering(tvPlayers);
     }
+
+    public DatabaseController(Database database) {
+
+        this.database = database;
+    }
+    
+
 
     public static <T> void preventColumnReordering(TableView<T> tableView) {
         Platform.runLater(() -> {
@@ -146,7 +149,7 @@ public class DatabaseController implements Initializable {
 
         tvPlayers.setItems(playersObservableList);
         lblPlayers.setText("Players: " + database.getPlayersInList().size());
-        database.createTreesToSearchByCategory();
+        
         
          	tvPlayers.setRowFactory(tv -> {
 			TableRow<Player> row = new TableRow<>();
@@ -333,7 +336,8 @@ public class DatabaseController implements Initializable {
     	
     	if (tempList!=null) {
     		
-    		ObservableList<Player> playersObservableList = FXCollections.observableList(tempList);    		
+    		ObservableList<Player> playersObservableList = FXCollections.observableList(tempList);
+    		System.out.println("LENGH LIST"+tempList.size());
     		tvPlayers.setItems(playersObservableList);
     		btnSearchCategory.setText("Clean Search");    		
     		lblSearchResult.setText("Search by Category time: " + searchTime + " ms.");    		

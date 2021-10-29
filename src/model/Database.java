@@ -36,6 +36,7 @@ public class Database {
     public void addPlayer(Player player) {
         players.createNode(player);
         playersInList.add(player);        
+        createTreesToSearchByCategory(player);
     }
     
     public void deletePlayer(String player) {    	
@@ -48,7 +49,23 @@ public class Database {
     
     
     //Method to create the 4 binary trees to efficient searches
-    public void createTreesToSearchByCategory() {    	
+    public void createTreesToSearchByCategory(Player player) {  
+    	if (player!=null) {
+    		System.out.println("lO LLAME");
+    		Category tempPoints = new Category(player, player.getPointsPerGame());
+        	Category tempRebounds = new Category(player, player.getReboundsPerGame());
+        	Category tempAssists = new Category(player, player.getAssistsPerGame());
+        	Category tempSteals = new Category(player, player.getStealsPerGame());
+        	
+        	playersByPoints.createNode(tempPoints);
+        	playersByRebounds.createNode(tempRebounds);
+        	playersByAssists.createNode(tempAssists);
+        	playersBySteals.createNode(tempSteals);
+        	
+    	}
+    
+    	/*
+    	
     	for (int i=0;i<4;i++) {//4 binaryTree
     		for (int j=0;j<playersInList.size();j++) {
     			
@@ -78,6 +95,7 @@ public class Database {
     		}
     	
     	}
+    	*/
     }
     
 
