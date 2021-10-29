@@ -59,9 +59,10 @@ public class EditPlayerController {
     private TextField txtYear;
 
     private Player player;
+        
 
     public void initializeWindow(Player player) {
-        this.player = player;
+        this.player = player;    
     	txtName.setText(player.getName());
     	txtTeam.setText(player.getActualTeam());
     	txtYear.setText(Integer.toString(player.getBirthdate().getYear()));
@@ -87,17 +88,23 @@ public class EditPlayerController {
 
     @FXML
     public void editPlayer(ActionEvent event) {
-    	if (checkForm()) {
-            player.setName(txtName.getText());
-            player.setActualTeam(txtTeam.getText());
-            player.setBirthdate(LocalDate.of(Integer.parseInt(txtYear.getText()),Integer.parseInt(txtMonth.getText()),Integer.parseInt(txtDay.getText())));
-            player.setPointsPerGame(Double.parseDouble(txtPoints.getText()));
-            player.setReboundsPerGame(Double.parseDouble(txtRebounds.getText()));
-            player.setAssistsPerGame(Double.parseDouble(txtAssists.getText()));
-            player.setStealsPerGame(Double.parseDouble(txtSteals.getText()));
-            player.setBlocksPerGame(Double.parseDouble(txtBlocks.getText()));
-            goBack(null);
-    		databaseController.initializeTableView();
+    	if (checkForm()) {  
+    		Player changePlayer = player; //Obtiene
+    		database.deletePlayer(player.getName()); //Elimina el original del árbol  
+    		
+    		changePlayer.setName(txtName.getText());
+    		changePlayer.setActualTeam(txtTeam.getText());
+    		changePlayer.setBirthdate(LocalDate.of(Integer.parseInt(txtYear.getText()),Integer.parseInt(txtMonth.getText()),Integer.parseInt(txtDay.getText())));
+    		changePlayer.setPointsPerGame(Double.parseDouble(txtPoints.getText()));
+    		changePlayer.setReboundsPerGame(Double.parseDouble(txtRebounds.getText()));
+    		changePlayer.setAssistsPerGame(Double.parseDouble(txtAssists.getText()));
+    		changePlayer.setStealsPerGame(Double.parseDouble(txtSteals.getText()));
+    		
+            database.getBinaryTreePlayers().createNode(changePlayer); //Vuelve a insertar
+            database.addPlayer(changePlayer);
+
+            goBack(null);  
+            databaseController.initializeTableView();    		
     	}
     }
     

@@ -39,19 +39,20 @@ public class Database {
         createTreesToSearchByCategory(player);
     }
     
-    public void deletePlayer(String player) {    	
+    public void deletePlayer(String player) {    
+    	//System.out.println("PLAYER: "+player);
     	Player findPlayer = findPlayer(players.getRoot(), player);
     	if (findPlayer!=null) {    	
-    		playersInList.remove(findPlayer);
+    		playersInList.remove(indexInArrayList(player));
         	players.deleteNode(players.getRoot(), findPlayer);
+        	//System.out.println("LO ELIIMINA DEL ARBOL");
     	}   	    	
     }
     
     
     //Method to create the 4 binary trees to efficient searches
     public void createTreesToSearchByCategory(Player player) {  
-    	if (player!=null) {
-    		System.out.println("lO LLAME");
+    	if (player!=null) {    		
     		Category tempPoints = new Category(player, player.getPointsPerGame());
         	Category tempRebounds = new Category(player, player.getReboundsPerGame());
         	Category tempAssists = new Category(player, player.getAssistsPerGame());
@@ -62,45 +63,11 @@ public class Database {
         	playersByAssists.createNode(tempAssists);
         	playersBySteals.createNode(tempSteals);
         	
-    	}
-    
-    	/*
-    	
-    	for (int i=0;i<4;i++) {//4 binaryTree
-    		for (int j=0;j<playersInList.size();j++) {
-    			
-    			Category temp = null;
-    			
-    			switch(i) {
-        		case 0:
-        			temp = new Category(playersInList.get(j), playersInList.get(j).getPointsPerGame());
-        			playersByPoints.createNode(temp);
-        			break;
-        			
-        		case 1:
-        			temp = new Category(playersInList.get(j), playersInList.get(j).getReboundsPerGame());
-        			playersByRebounds.createNode(temp);
-        			break;
-        			
-        		case 2:
-        			temp = new Category(playersInList.get(j), playersInList.get(j).getAssistsPerGame());
-        			playersByAssists.createNode(temp);
-        			break;
-        			
-        		case 3:
-        			temp = new Category(playersInList.get(j), playersInList.get(j).getStealsPerGame());
-        			playersBySteals.createNode(temp);
-        			break;
-        		}
-    		}
-    	
-    	}
-    	*/
+    	}    
     }
     
 
     public void importPlayers(String path, String separator) throws IOException {
-        //int importAmount = 0;
         BufferedReader br = new BufferedReader(new FileReader(path));
         String line = br.readLine();
         line = br.readLine();
@@ -120,14 +87,11 @@ public class Database {
             Player player = new Player(name, actualTeam, birthday, pointsPerGame, reboundsPerGame, assistsPerGame, stealsPerGame, blocksPerGame);
 
             addPlayer(player);
-            //importAmount++;
-
+            
             line = br.readLine();
         }
 
-        br.close();
-
-        //return importAmount;
+        br.close();        
     }
 
     public Player findPlayer(String player) {    
@@ -138,8 +102,10 @@ public class Database {
     	Player findPlayer = null;
     	
     	if (current!=null) {   		
-    		if (name.toLowerCase().compareTo(current.getValue().getName().toLowerCase())==0) {
+    		//System.out.println("CURRENT: "+current.getValue().getName());
+    		if (name.toLowerCase().equals(current.getValue().getName().toLowerCase())) {
         		findPlayer = current.getValue();    		
+        		//System.out.println("founded");
         		
         	}else if (name.toLowerCase().compareTo(current.getValue().getName().toLowerCase())>0) {//Si es mayor
         		return findPlayer(current.getRight(),name);
@@ -149,6 +115,16 @@ public class Database {
         	}
     	}    
     	return findPlayer;    	
+    }
+    
+    public int indexInArrayList(String name) {   	
+    	int index = 0;
+    	for (int i=0;i<playersInList.size();i++) {    		
+    		if (playersInList.get(i).getName().equalsIgnoreCase(name)) {
+    			index = i;
+    		}
+    	}
+    	return index;    	
     }
     
     public ArrayList<Player> findPlayersByTeam(String team){
