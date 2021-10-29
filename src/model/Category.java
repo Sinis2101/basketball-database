@@ -2,7 +2,10 @@ package model;
 
 public class Category implements Comparable<Category> {
 	
+	//Attribute	
 	private double value;
+	
+	//Relation
 	private Player player;
 	
 

@@ -17,6 +17,10 @@ public class Database {
 	private BinaryTree<Category> playersByAssists;
 	private BinaryTree<Category> playersBySteals;
     private ArrayList<Player> playersInList; // For testing purposes only. Players will not be stored on a list.
+        
+    private ArrayList<Player> tempRankList = new ArrayList<>();
+    private ArrayList<Player> tempBiggerList = new ArrayList<>();
+    private ArrayList<Player> tempSmallerList = new ArrayList<>();
     
     
     public Database() {
@@ -142,12 +146,7 @@ public class Database {
     	
     	return listPlayers;
     }
-    
-    public ArrayList<Player> tempRankList = new ArrayList<>();
-    public ArrayList<Player> tempBiggerList = new ArrayList<>();
-    public ArrayList<Player> tempSmallerList = new ArrayList<>();
-    
-    
+   
     public ArrayList<Player> findPlayerByRank(String category, String info){
     	tempRankList.clear();
     	String [] temp = info.split(";");
